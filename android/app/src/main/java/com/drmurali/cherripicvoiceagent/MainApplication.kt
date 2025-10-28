@@ -1,4 +1,4 @@
-package com.drmurali.simpleconversationalairn
+package com.drmurali.cherripicvoiceagent
 
 import android.app.Application
 import android.content.res.Configuration

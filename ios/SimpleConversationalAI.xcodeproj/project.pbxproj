@@ -9,24 +9,24 @@
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		4F89D7D8F8B7D9EB81A875D4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = ECF2FFF0CD7B1DB1DF01A828 /* PrivacyInfo.xcprivacy */; };
-		AE5F314F1FAC29F0C808C5FE /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3050291BDCD2D45A1C27C8F /* ExpoModulesProvider.swift */; };
-		B0EA89B3B1A15E2FC6501D14 /* libPods-SimpleConversationalAI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA181BF9A9A372D12AAC8927 /* libPods-SimpleConversationalAI.a */; };
+		884B9CC03BB4F56EABD75E4D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C088E33D56211347F78922DE /* ExpoModulesProvider.swift */; };
+		BA16B965B75EE6E344D99447 /* libPods-SimpleConversationalAI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E7994E9127F6BC2837130E /* libPods-SimpleConversationalAI.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
+		FA56C007062AAC4E20A377C2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 4EF7D2B5D39AA0C076B56CE0 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		13B07F961A680F5B00A75B9A /* SimpleConversationalAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleConversationalAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SimpleConversationalAI/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SimpleConversationalAI/Info.plist; sourceTree = "<group>"; };
-		31560AAFA11C84A3679C1D77 /* Pods-SimpleConversationalAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleConversationalAI.debug.xcconfig"; path = "Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI.debug.xcconfig"; sourceTree = "<group>"; };
-		89FAF7DC6FDDF36D14C47243 /* Pods-SimpleConversationalAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleConversationalAI.release.xcconfig"; path = "Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI.release.xcconfig"; sourceTree = "<group>"; };
+		4EF7D2B5D39AA0C076B56CE0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SimpleConversationalAI/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		5EDCA79EC6AEA4107B07939E /* Pods-SimpleConversationalAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleConversationalAI.release.xcconfig"; path = "Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI.release.xcconfig"; sourceTree = "<group>"; };
+		913B6530F14F87561CFAE510 /* Pods-SimpleConversationalAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleConversationalAI.debug.xcconfig"; path = "Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI.debug.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = SimpleConversationalAI/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B3050291BDCD2D45A1C27C8F /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-SimpleConversationalAI/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		DA181BF9A9A372D12AAC8927 /* libPods-SimpleConversationalAI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleConversationalAI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ECF2FFF0CD7B1DB1DF01A828 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SimpleConversationalAI/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		C088E33D56211347F78922DE /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-SimpleConversationalAI/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		C4E7994E9127F6BC2837130E /* libPods-SimpleConversationalAI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleConversationalAI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = SimpleConversationalAI/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* SimpleConversationalAI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SimpleConversationalAI-Bridging-Header.h"; path = "SimpleConversationalAI/SimpleConversationalAI-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -37,21 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0EA89B3B1A15E2FC6501D14 /* libPods-SimpleConversationalAI.a in Frameworks */,
+				BA16B965B75EE6E344D99447 /* libPods-SimpleConversationalAI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E3600D10AA7E650513BD0D6 /* Pods */ = {
+		0CCD48E02B97277F5DA2E300 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				31560AAFA11C84A3679C1D77 /* Pods-SimpleConversationalAI.debug.xcconfig */,
-				89FAF7DC6FDDF36D14C47243 /* Pods-SimpleConversationalAI.release.xcconfig */,
+				913B6530F14F87561CFAE510 /* Pods-SimpleConversationalAI.debug.xcconfig */,
+				5EDCA79EC6AEA4107B07939E /* Pods-SimpleConversationalAI.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		0DE494B499C890947947E148 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				D136CF967BEBCC666F49F6B3 /* SimpleConversationalAI */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* SimpleConversationalAI */ = {
@@ -63,34 +71,18 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				ECF2FFF0CD7B1DB1DF01A828 /* PrivacyInfo.xcprivacy */,
+				4EF7D2B5D39AA0C076B56CE0 /* PrivacyInfo.xcprivacy */,
 			);
 			name = SimpleConversationalAI;
-			sourceTree = "<group>";
-		};
-		18BD4A61E9CFAA646D529C59 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				5DF25C974B7A59BBE4FD6743 /* SimpleConversationalAI */,
-			);
-			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				DA181BF9A9A372D12AAC8927 /* libPods-SimpleConversationalAI.a */,
+				C4E7994E9127F6BC2837130E /* libPods-SimpleConversationalAI.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5DF25C974B7A59BBE4FD6743 /* SimpleConversationalAI */ = {
-			isa = PBXGroup;
-			children = (
-				B3050291BDCD2D45A1C27C8F /* ExpoModulesProvider.swift */,
-			);
-			name = SimpleConversationalAI;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -107,8 +99,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				0E3600D10AA7E650513BD0D6 /* Pods */,
-				18BD4A61E9CFAA646D529C59 /* ExpoModulesProviders */,
+				0CCD48E02B97277F5DA2E300 /* Pods */,
+				0DE494B499C890947947E148 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -132,6 +124,14 @@
 			path = SimpleConversationalAI/Supporting;
 			sourceTree = "<group>";
 		};
+		D136CF967BEBCC666F49F6B3 /* SimpleConversationalAI */ = {
+			isa = PBXGroup;
+			children = (
+				C088E33D56211347F78922DE /* ExpoModulesProvider.swift */,
+			);
+			name = SimpleConversationalAI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SimpleConversationalAI" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				7810DF734B1B9CF1C3839112 /* [Expo] Configure project */,
+				56E3BB8A1B50357C771E1A05 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				8BB7300A5950AC5D39769BDE /* [CP] Embed Pods Frameworks */,
+				3DBA9DA2163E3AE6DC9DFF55 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -166,9 +166,7 @@
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 84FXW3GBAT;
 						LastSwiftMigration = 1250;
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -198,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				4F89D7D8F8B7D9EB81A875D4 /* PrivacyInfo.xcprivacy in Resources */,
+				FA56C007062AAC4E20A377C2 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +240,27 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7810DF734B1B9CF1C3839112 /* [Expo] Configure project */ = {
+		3DBA9DA2163E3AE6DC9DFF55 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/WebRTC-SDK/WebRTC.framework/WebRTC",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56E3BB8A1B50357C771E1A05 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -297,26 +315,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8BB7300A5950AC5D39769BDE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/WebRTC-SDK/WebRTC.framework/WebRTC",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -325,7 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				AE5F314F1FAC29F0C808C5FE /* ExpoModulesProvider.swift in Sources */,
+				884B9CC03BB4F56EABD75E4D /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,15 +332,12 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31560AAFA11C84A3679C1D77 /* Pods-SimpleConversationalAI.debug.xcconfig */;
+			baseConfigurationReference = 913B6530F14F87561CFAE510 /* Pods-SimpleConversationalAI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SimpleConversationalAI/SimpleConversationalAI.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 84FXW3GBAT;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -361,7 +356,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.drmurali.simple-conversational-ai-rn";
+				PRODUCT_BUNDLE_IDENTIFIER = com.murali.cherripicvoiceagent;
 				PRODUCT_NAME = SimpleConversationalAI;
 				SWIFT_OBJC_BRIDGING_HEADER = "SimpleConversationalAI/SimpleConversationalAI-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -373,15 +368,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89FAF7DC6FDDF36D14C47243 /* Pods-SimpleConversationalAI.release.xcconfig */;
+			baseConfigurationReference = 5EDCA79EC6AEA4107B07939E /* Pods-SimpleConversationalAI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SimpleConversationalAI/SimpleConversationalAI.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 84FXW3GBAT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SimpleConversationalAI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -396,7 +388,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.drmurali.simple-conversational-ai-rn";
+				PRODUCT_BUNDLE_IDENTIFIER = com.murali.cherripicvoiceagent;
 				PRODUCT_NAME = SimpleConversationalAI;
 				SWIFT_OBJC_BRIDGING_HEADER = "SimpleConversationalAI/SimpleConversationalAI-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

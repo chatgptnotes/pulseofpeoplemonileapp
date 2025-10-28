@@ -11,7 +11,7 @@ export default {
     ],
     ios: {
       supportsTablet: true,
-      bundleIdentifier: "com.drmurali.simple-conversational-ai-rn",
+      bundleIdentifier: "com.murali.cherripicvoiceagent",
       bitcode: false,
       infoPlist: {
         NSMicrophoneUsageDescription: "This app needs microphone access for voice conversations with AI.",
@@ -28,7 +28,11 @@ export default {
       }
     },
     android: {
-      package: "com.drmurali.simpleconversationalairn",
+      package: "com.drmurali.cherripicvoiceagent",
+      versionCode: 1,
+      adaptiveIcon: {
+        backgroundColor: "#ffffff"
+      },
       permissions: [
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS",
@@ -38,6 +42,11 @@ export default {
         "android.permission.INTERNET"
       ]
     },
+    extra: {
+      eas: {
+        projectId: "ad7b470e-f6d8-4ed7-918c-436099f78eaa"
+      }
+    },
     plugins: [
       "@livekit/react-native-expo-plugin",
       [
@@ -45,6 +54,16 @@ export default {
         {
           cameraPermission: "Allow access to camera for video calls.",
           microphonePermission: "Allow access to microphone for voice conversations."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          android: {
+            minSdkVersion: 24,
+            targetSdkVersion: 34,
+            compileSdkVersion: 34
+          }
         }
       ]
     ]

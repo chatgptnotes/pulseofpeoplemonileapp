@@ -27,7 +27,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.drmurali.simple-conversational-ai-rn</string>
+          <string>com.murali.cherripicvoiceagent</string>
         </array>
       </dict>
       <dict>
@@ -64,8 +64,18 @@
           <key>urls</key>
           <string>stun:stun.l.google.com:19302</string>
         </dict>
+        <dict>
+          <key>urls</key>
+          <string>stun:stun1.l.google.com:19302</string>
+        </dict>
       </array>
+      <key>iceCandidatePoolSize</key>
+      <integer>10</integer>
     </dict>
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>audio</string>
+    </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>
