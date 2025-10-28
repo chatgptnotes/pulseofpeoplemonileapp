@@ -61,8 +61,8 @@ export default {
         {
           android: {
             minSdkVersion: 24,
-            targetSdkVersion: 34,
-            compileSdkVersion: 34
+            targetSdkVersion: 35,
+            compileSdkVersion: 35
           }
         }
       ]
