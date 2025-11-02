@@ -1,7 +1,45 @@
 # 🎙️ Simple Conversational AI React Native App
 
 A streamlined React Native application demonstrating voice conversations with ElevenLabs Conversational AI, featuring custom device interaction tools.
+This is a template i will use to make the 6 apps that i want to make on 2nd NOV 2025. This code only runs in a iphone or ipad device - not in simulator or local expo go. Install in a device. Summary of the Situation:
 
+  1. Expo Go: ❌ Not Supported
+    - Cannot run because the app uses native modules
+  (WebRTC, LiveKit, ElevenLabs SDK)
+  2. iOS Simulator: ✅ Working (Except Audio)
+    - App runs perfectly
+    - AI connects and works
+    - Audio output doesn't work (simulator limitation with
+  WebRTC)
+  3. Physical iPhone: ⚠️ Needs Code Signing Setup
+    - Requires Apple Developer account configuration
+    - Needs team ID and provisioning profile
+
+  Your Options:
+
+  Option A: Continue with Simulator (Quick)
+
+  The app IS working - the AI is responding, you just can't
+  hear it. You can verify it's working by:
+  - Reading the console logs (AI messages are coming
+  through)
+  - Using the text input feature to chat with AI
+  - Watching the "AI Speaking" / "Listening" indicators
+
+  Option B: Fix Physical Device Deployment (15-20 min)
+
+  Open Xcode and configure signing:
+
+  open ios/SimpleConversationalAI.xcworkspace
+
+  Then in Xcode:
+  1. Select the project in the left sidebar
+  2. Select "SimpleConversationalAI" target
+  3. Go to "Signing & Capabilities"
+  4. Select your Team
+  5. Build to your iPhone
+
+     
 ## ✨ Features
 
 - **🗣️ Voice Conversations**: Real-time voice chat with AI agents
