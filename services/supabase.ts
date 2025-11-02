@@ -30,14 +30,14 @@ export type UserRole =
 export interface User {
   id: string;
   email: string;
-  full_name: string;
+  name: string;
   role: UserRole;
   organization_id?: string;
   tenant_id?: string;
   phone?: string;
-  avatar_url?: string;
-  is_active: boolean;
-  last_login_at?: string;
+  avatar?: string;
+  is_active?: boolean;
+  last_login?: string;
   created_at: string;
   updated_at: string;
 }

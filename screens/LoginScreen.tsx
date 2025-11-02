@@ -13,7 +13,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import { useAuth } from '../contexts/AuthContext';
 
-export default function LoginScreen() {
+interface LoginScreenProps {
+  navigation: any;
+}
+
+export default function LoginScreen({ navigation }: LoginScreenProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -91,6 +95,15 @@ export default function LoginScreen() {
 
             <TouchableOpacity style={styles.forgotPassword}>
               <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.signupLink}
+              onPress={() => navigation.navigate('Signup')}
+            >
+              <Text style={styles.signupLinkText}>
+                Don't have an account? <Text style={styles.signupLinkBold}>Sign Up</Text>
+              </Text>
             </TouchableOpacity>
           </View>
 
@@ -182,6 +195,18 @@ const styles = StyleSheet.create({
     color: '#1E40AF',
     fontSize: 14,
     fontWeight: '500',
+  },
+  signupLink: {
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  signupLinkText: {
+    color: '#6B7280',
+    fontSize: 14,
+  },
+  signupLinkBold: {
+    color: '#1E40AF',
+    fontWeight: '600',
   },
   footer: {
     alignItems: 'center',

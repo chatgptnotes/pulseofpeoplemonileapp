@@ -2,6 +2,7 @@ export default {
   expo: {
     name: "Pulse of People",
     slug: "pulse-of-people-mobile",
+    scheme: "pulseofpeople",
     version: "1.0.0",
     orientation: "portrait",
     userInterfaceStyle: "light",

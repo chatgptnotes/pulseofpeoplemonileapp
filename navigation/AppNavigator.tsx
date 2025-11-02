@@ -2,10 +2,12 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useAuth } from '../contexts/AuthContext';
 
 // Screens
 import LoginScreen from '../screens/LoginScreen';
+import SignupScreen from '../screens/SignupScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import FieldReportsScreen from '../screens/FieldReportsScreen';
 import SocialMediaScreen from '../screens/SocialMediaScreen';
@@ -93,17 +95,17 @@ function MainTabs() {
   );
 }
 
-// Simple icon component (using text icons for now, will replace with Material icons)
+// Material Icon component for tab bar icons
 function TabIcon({ name, color }: { name: string; color: string }) {
-  const icons: Record<string, string> = {
-    dashboard: '📊',
-    'add-circle': '➕',
-    notifications: '🔔',
-    'bar-chart': '📈',
-    person: '👤',
+  const iconMap: Record<string, keyof typeof MaterialIcons.glyphMap> = {
+    dashboard: 'dashboard',
+    'add-circle': 'add-circle',
+    notifications: 'notifications',
+    'bar-chart': 'bar-chart',
+    person: 'person',
   };
 
-  return <span style={{ fontSize: 24 }}>{icons[name] || '•'}</span>;
+  return <MaterialIcons name={iconMap[name] || 'help'} size={24} color={color} />;
 }
 
 export default function AppNavigator() {
@@ -117,7 +119,10 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!user ? (
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Signup" component={SignupScreen} />
+          </>
         ) : (
           <>
             <Stack.Screen name="Main" component={MainTabs} />

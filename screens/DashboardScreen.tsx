@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase, SentimentData, Alert as AlertType } from '../services/supabase';
 
@@ -99,8 +100,8 @@ export default function DashboardScreen({ navigation }: any) {
         style={styles.header}
       >
         <Text style={styles.headerTitle}>Dashboard</Text>
-        <Text style={styles.headerSubtitle}>Welcome back, {user?.full_name || 'User'}</Text>
-        <Text style={styles.headerRole}>{user?.role.replace('_', ' ').toUpperCase()}</Text>
+        <Text style={styles.headerSubtitle}>Welcome back, {user?.name || 'User'}</Text>
+        <Text style={styles.headerRole}>{user?.role.replace('_', ' ').toUpperCase() || 'USER'}</Text>
       </LinearGradient>
 
       <ScrollView
@@ -156,7 +157,7 @@ export default function DashboardScreen({ navigation }: any) {
                 style={styles.actionCard}
                 onPress={() => navigation.navigate('Submit')}
               >
-                <Text style={styles.actionIcon}>📝</Text>
+                <MaterialIcons name="edit" size={40} color="#3B82F6" style={styles.actionIcon} />
                 <Text style={styles.actionText}>Submit Report</Text>
               </TouchableOpacity>
             )}
@@ -166,7 +167,7 @@ export default function DashboardScreen({ navigation }: any) {
                 style={styles.actionCard}
                 onPress={() => navigation.navigate('Analytics')}
               >
-                <Text style={styles.actionIcon}>📊</Text>
+                <MaterialIcons name="bar-chart" size={40} color="#10B981" style={styles.actionIcon} />
                 <Text style={styles.actionText}>Analytics</Text>
               </TouchableOpacity>
             )}
@@ -176,7 +177,7 @@ export default function DashboardScreen({ navigation }: any) {
                 style={styles.actionCard}
                 onPress={() => navigation.navigate('SocialMedia')}
               >
-                <Text style={styles.actionIcon}>📱</Text>
+                <MaterialIcons name="smartphone" size={40} color="#8B5CF6" style={styles.actionIcon} />
                 <Text style={styles.actionText}>Social Media</Text>
               </TouchableOpacity>
             )}
@@ -186,7 +187,7 @@ export default function DashboardScreen({ navigation }: any) {
                 style={styles.actionCard}
                 onPress={() => navigation.navigate('Surveys')}
               >
-                <Text style={styles.actionIcon}>📋</Text>
+                <MaterialIcons name="assignment" size={40} color="#F59E0B" style={styles.actionIcon} />
                 <Text style={styles.actionText}>Surveys</Text>
               </TouchableOpacity>
             )}
@@ -196,7 +197,7 @@ export default function DashboardScreen({ navigation }: any) {
                 style={styles.actionCard}
                 onPress={() => navigation.navigate('VoterDatabase')}
               >
-                <Text style={styles.actionIcon}>👥</Text>
+                <MaterialIcons name="people" size={40} color="#EC4899" style={styles.actionIcon} />
                 <Text style={styles.actionText}>Voters</Text>
               </TouchableOpacity>
             )}
@@ -206,7 +207,7 @@ export default function DashboardScreen({ navigation }: any) {
                 style={styles.actionCard}
                 onPress={() => navigation.navigate('AIInsights')}
               >
-                <Text style={styles.actionIcon}>🤖</Text>
+                <MaterialIcons name="psychology" size={40} color="#06B6D4" style={styles.actionIcon} />
                 <Text style={styles.actionText}>AI Insights</Text>
               </TouchableOpacity>
             )}
@@ -363,7 +364,6 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   actionIcon: {
-    fontSize: 32,
     marginBottom: 8,
   },
   actionText: {

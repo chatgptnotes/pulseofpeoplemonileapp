@@ -6,6 +6,7 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
+  signUp: (email: string, password: string, fullName: string, phone?: string, role?: UserRole) => Promise<void>;
   signOut: () => Promise<void>;
   hasPermission: (permission: Permission) => boolean;
   hasAnyPermission: (permissions: Permission[]) => boolean;
@@ -60,6 +61,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  const signUp = async (
+    email: string,
+    password: string,
+    fullName: string,
+    phone?: string,
+    role: UserRole = 'voter'
+  ) => {
+    try {
+      await AuthService.signUp(email, password, fullName, phone, role);
+      // Don't automatically sign in, let user sign in manually after signup
+    } catch (error) {
+      console.error('Sign up error:', error);
+      throw error;
+    }
+  };
+
   const signOut = async () => {
     try {
       await AuthService.signOut();
@@ -97,6 +114,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     user,
     loading,
     signIn,
+    signUp,
     signOut,
     hasPermission,
     hasAnyPermission,

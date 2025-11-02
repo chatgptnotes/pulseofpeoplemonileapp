@@ -7,29 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05D0FE4DD37C2FFA77E3F84B /* libPods-PulseofPeople.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 538E71B40CD7699352ED692C /* libPods-PulseofPeople.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		49B821FBFB026A3D14338FD9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 099557EBDBF6F05D80312B6B /* PrivacyInfo.xcprivacy */; };
-		A14C455852F0C1856A62F78B /* libPods-CherriPicVoiceAgent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 488AA252E6660A845FD679DF /* libPods-CherriPicVoiceAgent.a */; };
+		4A1750DCD07FB2DD19628D5B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7353DDCC31A348AE1A24D760 /* PrivacyInfo.xcprivacy */; };
+		BAEADC413F2431CFFF1C20A5 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445625D94FE4D89A907DFD49 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		E8BE05DCAA8BBF70F0AED297 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3936F549AC078471F3580AA4 /* ExpoModulesProvider.swift */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		099557EBDBF6F05D80312B6B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = CherriPicVoiceAgent/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* CherriPicVoiceAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CherriPicVoiceAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CherriPicVoiceAgent/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CherriPicVoiceAgent/Info.plist; sourceTree = "<group>"; };
-		3936F549AC078471F3580AA4 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-CherriPicVoiceAgent/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		488AA252E6660A845FD679DF /* libPods-CherriPicVoiceAgent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CherriPicVoiceAgent.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8FF89ACFE06AAF78DC7D39BD /* Pods-CherriPicVoiceAgent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CherriPicVoiceAgent.debug.xcconfig"; path = "Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent.debug.xcconfig"; sourceTree = "<group>"; };
-		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = CherriPicVoiceAgent/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B4D7D545EA07ABE15EBD963F /* Pods-CherriPicVoiceAgent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CherriPicVoiceAgent.release.xcconfig"; path = "Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent.release.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* PulseofPeople.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PulseofPeople.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PulseofPeople/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PulseofPeople/Info.plist; sourceTree = "<group>"; };
+		445625D94FE4D89A907DFD49 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-PulseofPeople/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		538E71B40CD7699352ED692C /* libPods-PulseofPeople.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PulseofPeople.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C57A4A4823CAB76820E2EBB /* Pods-PulseofPeople.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseofPeople.debug.xcconfig"; path = "Target Support Files/Pods-PulseofPeople/Pods-PulseofPeople.debug.xcconfig"; sourceTree = "<group>"; };
+		7353DDCC31A348AE1A24D760 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = PulseofPeople/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		82BAF0A8D1E7AC382828C023 /* Pods-PulseofPeople.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseofPeople.release.xcconfig"; path = "Target Support Files/Pods-PulseofPeople/Pods-PulseofPeople.release.xcconfig"; sourceTree = "<group>"; };
+		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = PulseofPeople/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CherriPicVoiceAgent/AppDelegate.swift; sourceTree = "<group>"; };
-		F11748442D0722820044C1D9 /* CherriPicVoiceAgent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CherriPicVoiceAgent-Bridging-Header.h"; path = "CherriPicVoiceAgent/CherriPicVoiceAgent-Bridging-Header.h"; sourceTree = "<group>"; };
+		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = PulseofPeople/AppDelegate.swift; sourceTree = "<group>"; };
+		F11748442D0722820044C1D9 /* PulseofPeople-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PulseofPeople-Bridging-Header.h"; path = "PulseofPeople/PulseofPeople-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,41 +37,49 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A14C455852F0C1856A62F78B /* libPods-CherriPicVoiceAgent.a in Frameworks */,
+				05D0FE4DD37C2FFA77E3F84B /* libPods-PulseofPeople.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13B07FAE1A68108700A75B9A /* CherriPicVoiceAgent */ = {
+		13B07FAE1A68108700A75B9A /* PulseofPeople */ = {
 			isa = PBXGroup;
 			children = (
 				F11748412D0307B40044C1D9 /* AppDelegate.swift */,
-				F11748442D0722820044C1D9 /* CherriPicVoiceAgent-Bridging-Header.h */,
+				F11748442D0722820044C1D9 /* PulseofPeople-Bridging-Header.h */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				099557EBDBF6F05D80312B6B /* PrivacyInfo.xcprivacy */,
+				7353DDCC31A348AE1A24D760 /* PrivacyInfo.xcprivacy */,
 			);
-			name = CherriPicVoiceAgent;
+			name = PulseofPeople;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				488AA252E6660A845FD679DF /* libPods-CherriPicVoiceAgent.a */,
+				538E71B40CD7699352ED692C /* libPods-PulseofPeople.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		764C07FBDF8913768C31D659 /* Pods */ = {
+		34676DCD8F5FDF62D48C5373 /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				8FF89ACFE06AAF78DC7D39BD /* Pods-CherriPicVoiceAgent.debug.xcconfig */,
-				B4D7D545EA07ABE15EBD963F /* Pods-CherriPicVoiceAgent.release.xcconfig */,
+				C426962E51FAD9233D738932 /* PulseofPeople */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		6651A28ED6D8D68384D53F34 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6C57A4A4823CAB76820E2EBB /* Pods-PulseofPeople.debug.xcconfig */,
+				82BAF0A8D1E7AC382828C023 /* Pods-PulseofPeople.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -87,12 +95,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* CherriPicVoiceAgent */,
+				13B07FAE1A68108700A75B9A /* PulseofPeople */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				764C07FBDF8913768C31D659 /* Pods */,
-				A9CB678C71E95552E3CEA036 /* ExpoModulesProviders */,
+				6651A28ED6D8D68384D53F34 /* Pods */,
+				34676DCD8F5FDF62D48C5373 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -102,25 +110,9 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* CherriPicVoiceAgent.app */,
+				13B07F961A680F5B00A75B9A /* PulseofPeople.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		A9CB678C71E95552E3CEA036 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				B559041ABD5D8027D3D00976 /* CherriPicVoiceAgent */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		B559041ABD5D8027D3D00976 /* CherriPicVoiceAgent */ = {
-			isa = PBXGroup;
-			children = (
-				3936F549AC078471F3580AA4 /* ExpoModulesProvider.swift */,
-			);
-			name = CherriPicVoiceAgent;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -129,32 +121,40 @@
 				BB2F792C24A3F905000567C9 /* Expo.plist */,
 			);
 			name = Supporting;
-			path = CherriPicVoiceAgent/Supporting;
+			path = PulseofPeople/Supporting;
+			sourceTree = "<group>";
+		};
+		C426962E51FAD9233D738932 /* PulseofPeople */ = {
+			isa = PBXGroup;
+			children = (
+				445625D94FE4D89A907DFD49 /* ExpoModulesProvider.swift */,
+			);
+			name = PulseofPeople;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13B07F861A680F5B00A75B9A /* CherriPicVoiceAgent */ = {
+		13B07F861A680F5B00A75B9A /* PulseofPeople */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CherriPicVoiceAgent" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "PulseofPeople" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				0A8AF8762D432284DDE91C4F /* [Expo] Configure project */,
+				B21471355D0CA319D7707BA0 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				925BC66542DDAC07A923F109 /* [CP] Embed Pods Frameworks */,
+				1C2EFA676859A7D48A4980E9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = CherriPicVoiceAgent;
-			productName = CherriPicVoiceAgent;
-			productReference = 13B07F961A680F5B00A75B9A /* CherriPicVoiceAgent.app */;
+			name = PulseofPeople;
+			productName = PulseofPeople;
+			productReference = 13B07F961A680F5B00A75B9A /* PulseofPeople.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -172,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CherriPicVoiceAgent" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "PulseofPeople" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -185,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* CherriPicVoiceAgent */,
+				13B07F861A680F5B00A75B9A /* PulseofPeople */,
 			);
 		};
 /* End PBXProject section */
@@ -198,7 +198,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				49B821FBFB026A3D14338FD9 /* PrivacyInfo.xcprivacy in Resources */,
+				4A1750DCD07FB2DD19628D5B /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,14 +235,74 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CherriPicVoiceAgent-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-PulseofPeople-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0A8AF8762D432284DDE91C4F /* [Expo] Configure project */ = {
+		1C2EFA676859A7D48A4980E9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PulseofPeople/Pods-PulseofPeople-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/WebRTC-SDK/WebRTC.framework/WebRTC",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PulseofPeople/Pods-PulseofPeople-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PulseofPeople/Pods-PulseofPeople-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RCT-Folly/RCT-Folly_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG/RNSVGFilters.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React-Core_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact/React-cxxreact_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/boost/boost_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/expo-dev-launcher/EXDevLauncher.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/expo-dev-menu/EXDevMenu.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/glog/glog_privacy.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoConstants_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoFileSystem_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCT-Folly_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNCAsyncStorage_resources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNSVGFilters.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-Core_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-cxxreact_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/boost_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXDevLauncher.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXDevMenu.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/glog_privacy.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PulseofPeople/Pods-PulseofPeople-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B21471355D0CA319D7707BA0 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -259,63 +319,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-CherriPicVoiceAgent/expo-configure-project.sh\"\n";
-		};
-		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/RCT-Folly/RCT-Folly_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React-Core_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact/React-cxxreact_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/boost/boost_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/expo-dev-launcher/EXDevLauncher.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/expo-dev-menu/EXDevMenu.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/glog/glog_privacy.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoConstants_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoFileSystem_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCT-Folly_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-Core_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-cxxreact_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/boost_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXDevLauncher.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXDevMenu.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/glog_privacy.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		925BC66542DDAC07A923F109 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/WebRTC-SDK/WebRTC.framework/WebRTC",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-PulseofPeople/expo-configure-project.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -325,7 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				E8BE05DCAA8BBF70F0AED297 /* ExpoModulesProvider.swift in Sources */,
+				BAEADC413F2431CFFF1C20A5 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,18 +338,18 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FF89ACFE06AAF78DC7D39BD /* Pods-CherriPicVoiceAgent.debug.xcconfig */;
+			baseConfigurationReference = 6C57A4A4823CAB76820E2EBB /* Pods-PulseofPeople.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = CherriPicVoiceAgent/CherriPicVoiceAgent.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PulseofPeople/PulseofPeople.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
 				);
-				INFOPLIST_FILE = CherriPicVoiceAgent/Info.plist;
+				INFOPLIST_FILE = PulseofPeople/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -358,9 +362,9 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.drmurali.cherripicvoiceagent;
-				PRODUCT_NAME = CherriPicVoiceAgent;
-				SWIFT_OBJC_BRIDGING_HEADER = "CherriPicVoiceAgent/CherriPicVoiceAgent-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pulseofpeople.voter;
+				PRODUCT_NAME = PulseofPeople;
+				SWIFT_OBJC_BRIDGING_HEADER = "PulseofPeople/PulseofPeople-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -373,14 +377,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4D7D545EA07ABE15EBD963F /* Pods-CherriPicVoiceAgent.release.xcconfig */;
+			baseConfigurationReference = 82BAF0A8D1E7AC382828C023 /* Pods-PulseofPeople.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = CherriPicVoiceAgent/CherriPicVoiceAgent.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PulseofPeople/PulseofPeople.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = CherriPicVoiceAgent/Info.plist;
+				INFOPLIST_FILE = PulseofPeople/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -393,9 +397,9 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.drmurali.cherripicvoiceagent;
-				PRODUCT_NAME = CherriPicVoiceAgent;
-				SWIFT_OBJC_BRIDGING_HEADER = "CherriPicVoiceAgent/CherriPicVoiceAgent-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pulseofpeople.voter;
+				PRODUCT_NAME = PulseofPeople;
+				SWIFT_OBJC_BRIDGING_HEADER = "PulseofPeople/PulseofPeople-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -534,7 +538,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CherriPicVoiceAgent" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "PulseofPeople" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -543,7 +547,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CherriPicVoiceAgent" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "PulseofPeople" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

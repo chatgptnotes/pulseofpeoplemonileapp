@@ -97,6 +97,49 @@ const rolePermissions: Record<UserRole, Permission[]> = {
 };
 
 export class AuthService {
+  // Sign up new user
+  static async signUp(
+    email: string,
+    password: string,
+    fullName: string,
+    phone?: string,
+    role: UserRole = 'voter'
+  ) {
+    try {
+      // Create auth user
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (signUpError) throw signUpError;
+      if (!data.user) throw new Error('Failed to create user');
+
+      // Create user profile in users table
+      const { error: profileError } = await supabase
+        .from('users')
+        .insert({
+          id: data.user.id,
+          email,
+          name: fullName,
+          phone,
+          role,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        });
+
+      if (profileError) {
+        console.error('Profile creation error:', profileError);
+        throw new Error('Failed to create user profile');
+      }
+
+      return { user: data.user, session: data.session };
+    } catch (error) {
+      console.error('Sign up error:', error);
+      throw error;
+    }
+  }
+
   // Sign in with email and password
   static async signIn(email: string, password: string) {
     try {
@@ -180,7 +223,7 @@ export class AuthService {
     try {
       const { error } = await supabase
         .from('users')
-        .update({ last_login_at: new Date().toISOString() })
+        .update({ last_login: new Date().toISOString() })
         .eq('id', userId);
 
       if (error) throw error;
