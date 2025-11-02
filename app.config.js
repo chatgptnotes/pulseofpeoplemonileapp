@@ -1,7 +1,7 @@
 export default {
   expo: {
-    name: "Cherri Pic Voice Agent",
-    slug: "simple-conversational-ai-rn",
+    name: "Pulse of People",
+    slug: "pulse-of-people-mobile",
     version: "1.0.0",
     orientation: "portrait",
     userInterfaceStyle: "light",
@@ -12,14 +12,17 @@ export default {
     ],
     ios: {
       supportsTablet: true,
-      bundleIdentifier: "com.drmurali.cherripicvoiceagent",
+      bundleIdentifier: "com.pulseofpeople.voter",
       bitcode: false,
       icon: "./assets/icon.png",
       infoPlist: {
-        NSMicrophoneUsageDescription: "This app needs microphone access for voice conversations with AI.",
-        NSSpeechRecognitionUsageDescription: "This app needs speech recognition to understand your voice commands.",
-        NSCameraUsageDescription: "This app may use camera for video calls if enabled.",
-        NSLocalNetworkUsageDescription: "This app uses local network for WebRTC communication.",
+        NSMicrophoneUsageDescription: "This app needs microphone access for field reports and voice notes.",
+        NSSpeechRecognitionUsageDescription: "This app needs speech recognition for voice-to-text in reports.",
+        NSCameraUsageDescription: "This app uses camera to capture photos for field reports and events.",
+        NSLocationWhenInUseUsageDescription: "This app uses location to tag field reports and track campaign activities.",
+        NSLocationAlwaysAndWhenInUseUsageDescription: "This app uses location for real-time field worker tracking.",
+        NSPhotoLibraryUsageDescription: "This app needs access to your photos to attach images to field reports.",
+        NSLocalNetworkUsageDescription: "This app uses local network for real-time data synchronization.",
         RTCConfiguration: {
           iceServers: [
             { urls: "stun:stun.l.google.com:19302" },
@@ -31,16 +34,21 @@ export default {
       }
     },
     android: {
-      package: "com.drmurali.cherripicvoiceagent",
+      package: "com.pulseofpeople.voter",
       versionCode: 1,
       icon: "./assets/icon.png",
       adaptiveIcon: {
         foregroundImage: "./assets/icon.png",
-        backgroundColor: "#2563EB"
+        backgroundColor: "#1E40AF"
       },
       permissions: [
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.VIBRATE",
         "android.permission.WAKE_LOCK",
         "android.permission.ACCESS_NETWORK_STATE",

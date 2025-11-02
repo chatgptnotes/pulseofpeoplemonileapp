@@ -1,7 +1,7 @@
 {
-  "name": "simple-conversational-ai-rn",
+  "name": "pulse-of-people-mobile",
   "version": "1.0.0",
-  "description": "A simple React Native conversational AI app using ElevenLabs",
+  "description": "Pulse of People - Multi-tenant voter sentiment analysis and political intelligence platform",
   "main": "index.tsx",
   "scripts": {
     "start": "expo start",
@@ -9,16 +9,20 @@
     "ios": "expo run:ios",
     "prebuild": "expo prebuild",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "build:android": "eas build --platform android",
+    "build:ios": "eas build --platform ios"
   },
   "keywords": [
     "react-native",
     "expo",
-    "elevenlabs",
-    "conversational-ai",
-    "voice-assistant"
+    "political-intelligence",
+    "voter-sentiment",
+    "campaign-management",
+    "field-operations",
+    "social-media-monitoring"
   ],
-  "author": "ElevenLabs",
+  "author": "Pulse of People",
   "license": "MIT",
   "dependencies": {
     "@config-plugins/react-native-webrtc": "^12.0.0",
@@ -27,18 +31,30 @@
     "@livekit/react-native": "^2.9.3",
     "@livekit/react-native-expo-plugin": "^1.0.1",
     "@livekit/react-native-webrtc": "^125.0.12",
+    "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-voice/voice": "^3.2.4",
+    "@react-navigation/bottom-tabs": "^7.7.3",
+    "@react-navigation/native": "^7.1.19",
+    "@react-navigation/stack": "^7.6.2",
+    "@supabase/supabase-js": "^2.78.0",
     "expo": "~53.0.20",
     "expo-av": "~15.1.7",
     "expo-battery": "~9.1.4",
     "expo-brightness": "~13.1.4",
     "expo-dev-client": "~5.2.4",
+    "expo-image-picker": "^17.0.8",
     "expo-linear-gradient": "~14.1.5",
+    "expo-location": "^19.0.7",
     "expo-speech": "^14.0.7",
     "expo-status-bar": "~2.2.3",
     "livekit-client": "^2.15.4",
     "react": "19.0.0",
-    "react-native": "0.79.6"
+    "react-native": "0.79.6",
+    "react-native-chart-kit": "^6.12.0",
+    "react-native-maps": "^1.26.18",
+    "react-native-safe-area-context": "^5.6.2",
+    "react-native-screens": "^4.18.0",
+    "react-native-svg": "^15.14.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
