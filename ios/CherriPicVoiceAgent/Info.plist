@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>Simple Conversational AI</string>
+    <string>Cherri Pic Voice Agent</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -27,7 +27,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.murali.cherripicvoiceagent</string>
+          <string>com.drmurali.cherripicvoiceagent</string>
         </array>
       </dict>
       <dict>
@@ -56,6 +56,8 @@
     <string>This app uses local network for WebRTC communication.</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Allow access to microphone for voice conversations.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>This app needs speech recognition to understand your voice commands.</string>
     <key>RTCConfiguration</key>
     <dict>
       <key>iceServers</key>

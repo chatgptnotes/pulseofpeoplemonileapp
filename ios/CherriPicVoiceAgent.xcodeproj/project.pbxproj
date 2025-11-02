@@ -9,27 +9,27 @@
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		884B9CC03BB4F56EABD75E4D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C088E33D56211347F78922DE /* ExpoModulesProvider.swift */; };
-		BA16B965B75EE6E344D99447 /* libPods-SimpleConversationalAI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E7994E9127F6BC2837130E /* libPods-SimpleConversationalAI.a */; };
+		49B821FBFB026A3D14338FD9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 099557EBDBF6F05D80312B6B /* PrivacyInfo.xcprivacy */; };
+		A14C455852F0C1856A62F78B /* libPods-CherriPicVoiceAgent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 488AA252E6660A845FD679DF /* libPods-CherriPicVoiceAgent.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		E8BE05DCAA8BBF70F0AED297 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3936F549AC078471F3580AA4 /* ExpoModulesProvider.swift */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
-		FA56C007062AAC4E20A377C2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 4EF7D2B5D39AA0C076B56CE0 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		13B07F961A680F5B00A75B9A /* SimpleConversationalAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleConversationalAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SimpleConversationalAI/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SimpleConversationalAI/Info.plist; sourceTree = "<group>"; };
-		4EF7D2B5D39AA0C076B56CE0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SimpleConversationalAI/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		5EDCA79EC6AEA4107B07939E /* Pods-SimpleConversationalAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleConversationalAI.release.xcconfig"; path = "Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI.release.xcconfig"; sourceTree = "<group>"; };
-		913B6530F14F87561CFAE510 /* Pods-SimpleConversationalAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleConversationalAI.debug.xcconfig"; path = "Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI.debug.xcconfig"; sourceTree = "<group>"; };
-		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = SimpleConversationalAI/SplashScreen.storyboard; sourceTree = "<group>"; };
+		099557EBDBF6F05D80312B6B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = CherriPicVoiceAgent/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* CherriPicVoiceAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CherriPicVoiceAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CherriPicVoiceAgent/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CherriPicVoiceAgent/Info.plist; sourceTree = "<group>"; };
+		3936F549AC078471F3580AA4 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-CherriPicVoiceAgent/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		488AA252E6660A845FD679DF /* libPods-CherriPicVoiceAgent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CherriPicVoiceAgent.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FF89ACFE06AAF78DC7D39BD /* Pods-CherriPicVoiceAgent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CherriPicVoiceAgent.debug.xcconfig"; path = "Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent.debug.xcconfig"; sourceTree = "<group>"; };
+		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = CherriPicVoiceAgent/SplashScreen.storyboard; sourceTree = "<group>"; };
+		B4D7D545EA07ABE15EBD963F /* Pods-CherriPicVoiceAgent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CherriPicVoiceAgent.release.xcconfig"; path = "Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent.release.xcconfig"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C088E33D56211347F78922DE /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-SimpleConversationalAI/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		C4E7994E9127F6BC2837130E /* libPods-SimpleConversationalAI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleConversationalAI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = SimpleConversationalAI/AppDelegate.swift; sourceTree = "<group>"; };
-		F11748442D0722820044C1D9 /* SimpleConversationalAI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SimpleConversationalAI-Bridging-Header.h"; path = "SimpleConversationalAI/SimpleConversationalAI-Bridging-Header.h"; sourceTree = "<group>"; };
+		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CherriPicVoiceAgent/AppDelegate.swift; sourceTree = "<group>"; };
+		F11748442D0722820044C1D9 /* CherriPicVoiceAgent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CherriPicVoiceAgent-Bridging-Header.h"; path = "CherriPicVoiceAgent/CherriPicVoiceAgent-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,52 +37,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA16B965B75EE6E344D99447 /* libPods-SimpleConversationalAI.a in Frameworks */,
+				A14C455852F0C1856A62F78B /* libPods-CherriPicVoiceAgent.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0CCD48E02B97277F5DA2E300 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				913B6530F14F87561CFAE510 /* Pods-SimpleConversationalAI.debug.xcconfig */,
-				5EDCA79EC6AEA4107B07939E /* Pods-SimpleConversationalAI.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		0DE494B499C890947947E148 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				D136CF967BEBCC666F49F6B3 /* SimpleConversationalAI */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		13B07FAE1A68108700A75B9A /* SimpleConversationalAI */ = {
+		13B07FAE1A68108700A75B9A /* CherriPicVoiceAgent */ = {
 			isa = PBXGroup;
 			children = (
 				F11748412D0307B40044C1D9 /* AppDelegate.swift */,
-				F11748442D0722820044C1D9 /* SimpleConversationalAI-Bridging-Header.h */,
+				F11748442D0722820044C1D9 /* CherriPicVoiceAgent-Bridging-Header.h */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				4EF7D2B5D39AA0C076B56CE0 /* PrivacyInfo.xcprivacy */,
+				099557EBDBF6F05D80312B6B /* PrivacyInfo.xcprivacy */,
 			);
-			name = SimpleConversationalAI;
+			name = CherriPicVoiceAgent;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				C4E7994E9127F6BC2837130E /* libPods-SimpleConversationalAI.a */,
+				488AA252E6660A845FD679DF /* libPods-CherriPicVoiceAgent.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		764C07FBDF8913768C31D659 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8FF89ACFE06AAF78DC7D39BD /* Pods-CherriPicVoiceAgent.debug.xcconfig */,
+				B4D7D545EA07ABE15EBD963F /* Pods-CherriPicVoiceAgent.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -95,12 +87,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* SimpleConversationalAI */,
+				13B07FAE1A68108700A75B9A /* CherriPicVoiceAgent */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				0CCD48E02B97277F5DA2E300 /* Pods */,
-				0DE494B499C890947947E148 /* ExpoModulesProviders */,
+				764C07FBDF8913768C31D659 /* Pods */,
+				A9CB678C71E95552E3CEA036 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -110,9 +102,25 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* SimpleConversationalAI.app */,
+				13B07F961A680F5B00A75B9A /* CherriPicVoiceAgent.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A9CB678C71E95552E3CEA036 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				B559041ABD5D8027D3D00976 /* CherriPicVoiceAgent */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		B559041ABD5D8027D3D00976 /* CherriPicVoiceAgent */ = {
+			isa = PBXGroup;
+			children = (
+				3936F549AC078471F3580AA4 /* ExpoModulesProvider.swift */,
+			);
+			name = CherriPicVoiceAgent;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -121,40 +129,32 @@
 				BB2F792C24A3F905000567C9 /* Expo.plist */,
 			);
 			name = Supporting;
-			path = SimpleConversationalAI/Supporting;
-			sourceTree = "<group>";
-		};
-		D136CF967BEBCC666F49F6B3 /* SimpleConversationalAI */ = {
-			isa = PBXGroup;
-			children = (
-				C088E33D56211347F78922DE /* ExpoModulesProvider.swift */,
-			);
-			name = SimpleConversationalAI;
+			path = CherriPicVoiceAgent/Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13B07F861A680F5B00A75B9A /* SimpleConversationalAI */ = {
+		13B07F861A680F5B00A75B9A /* CherriPicVoiceAgent */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SimpleConversationalAI" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CherriPicVoiceAgent" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				56E3BB8A1B50357C771E1A05 /* [Expo] Configure project */,
+				0A8AF8762D432284DDE91C4F /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				3DBA9DA2163E3AE6DC9DFF55 /* [CP] Embed Pods Frameworks */,
+				925BC66542DDAC07A923F109 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SimpleConversationalAI;
-			productName = SimpleConversationalAI;
-			productReference = 13B07F961A680F5B00A75B9A /* SimpleConversationalAI.app */;
+			name = CherriPicVoiceAgent;
+			productName = CherriPicVoiceAgent;
+			productReference = 13B07F961A680F5B00A75B9A /* CherriPicVoiceAgent.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -167,10 +167,12 @@
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1250;
+						DevelopmentTeam = "8B7FZV36DF";
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "SimpleConversationalAI" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CherriPicVoiceAgent" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -183,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* SimpleConversationalAI */,
+				13B07F861A680F5B00A75B9A /* CherriPicVoiceAgent */,
 			);
 		};
 /* End PBXProject section */
@@ -196,7 +198,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				FA56C007062AAC4E20A377C2 /* PrivacyInfo.xcprivacy in Resources */,
+				49B821FBFB026A3D14338FD9 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,34 +235,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SimpleConversationalAI-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CherriPicVoiceAgent-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3DBA9DA2163E3AE6DC9DFF55 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/WebRTC-SDK/WebRTC.framework/WebRTC",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		56E3BB8A1B50357C771E1A05 /* [Expo] Configure project */ = {
+		0A8AF8762D432284DDE91C4F /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -277,7 +259,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-SimpleConversationalAI/expo-configure-project.sh\"\n";
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-CherriPicVoiceAgent/expo-configure-project.sh\"\n";
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -285,7 +267,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
@@ -312,7 +294,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SimpleConversationalAI/Pods-SimpleConversationalAI-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		925BC66542DDAC07A923F109 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/WebRTC-SDK/WebRTC.framework/WebRTC",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CherriPicVoiceAgent/Pods-CherriPicVoiceAgent-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -323,7 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				884B9CC03BB4F56EABD75E4D /* ExpoModulesProvider.swift in Sources */,
+				E8BE05DCAA8BBF70F0AED297 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,18 +334,18 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 913B6530F14F87561CFAE510 /* Pods-SimpleConversationalAI.debug.xcconfig */;
+			baseConfigurationReference = 8FF89ACFE06AAF78DC7D39BD /* Pods-CherriPicVoiceAgent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = SimpleConversationalAI/SimpleConversationalAI.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CherriPicVoiceAgent/CherriPicVoiceAgent.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
 				);
-				INFOPLIST_FILE = SimpleConversationalAI/Info.plist;
+				INFOPLIST_FILE = CherriPicVoiceAgent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -356,26 +358,29 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.murali.cherripicvoiceagent;
-				PRODUCT_NAME = SimpleConversationalAI;
-				SWIFT_OBJC_BRIDGING_HEADER = "SimpleConversationalAI/SimpleConversationalAI-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = com.drmurali.cherripicvoiceagent;
+				PRODUCT_NAME = CherriPicVoiceAgent;
+				SWIFT_OBJC_BRIDGING_HEADER = "CherriPicVoiceAgent/CherriPicVoiceAgent-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+				DEVELOPMENT_TEAM = "8B7FZV36DF";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5EDCA79EC6AEA4107B07939E /* Pods-SimpleConversationalAI.release.xcconfig */;
+			baseConfigurationReference = B4D7D545EA07ABE15EBD963F /* Pods-CherriPicVoiceAgent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = SimpleConversationalAI/SimpleConversationalAI.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CherriPicVoiceAgent/CherriPicVoiceAgent.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = SimpleConversationalAI/Info.plist;
+				INFOPLIST_FILE = CherriPicVoiceAgent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -388,12 +393,15 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.murali.cherripicvoiceagent;
-				PRODUCT_NAME = SimpleConversationalAI;
-				SWIFT_OBJC_BRIDGING_HEADER = "SimpleConversationalAI/SimpleConversationalAI-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = com.drmurali.cherripicvoiceagent;
+				PRODUCT_NAME = CherriPicVoiceAgent;
+				SWIFT_OBJC_BRIDGING_HEADER = "CherriPicVoiceAgent/CherriPicVoiceAgent-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+				DEVELOPMENT_TEAM = "8B7FZV36DF";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Release;
 		};
@@ -526,7 +534,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SimpleConversationalAI" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CherriPicVoiceAgent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -535,7 +543,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "SimpleConversationalAI" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CherriPicVoiceAgent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

@@ -4,14 +4,13 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Keyboard,
-  TouchableWithoutFeedback,
   Platform,
   Alert,
   ScrollView,
   PermissionsAndroid,
+  TextInput,
+  Keyboard,
 } from 'react-native';
-import { TextInput } from 'react-native';
 import { ElevenLabsProvider, useConversation } from '@elevenlabs/react-native';
 import type {
   ConversationStatus,
@@ -20,7 +19,16 @@ import type {
 } from '@elevenlabs/react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from 'expo-av';
+import { LinearGradient } from 'expo-linear-gradient';
 import { getBatteryLevel, changeBrightness, flashScreen } from './utils/deviceTools';
+import { askGemini } from './utils/geminiService';
+// Voice features disabled - needs app rebuild to work
+// import {
+//   startVoiceRecognition,
+//   stopVoiceRecognition,
+//   speakText,
+//   stopSpeaking,
+// } from './utils/voiceService';
 
 const ConversationScreen = () => {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -102,18 +110,37 @@ const ConversationScreen = () => {
     },
     onConnect: ({ conversationId }: { conversationId: string }) => {
       console.log('✅ Connected to conversation:', conversationId);
-      Alert.alert('Connected', 'Voice conversation started! You can speak now.');
+      // Removed alert - user can see connection status visually
       setLastActivity(Date.now());
     },
     onDisconnect: (details: string) => {
       console.log('❌ Disconnected from conversation:', details);
-      Alert.alert('Disconnected', 'Voice conversation ended');
+      // Only alert if unexpected disconnection (not user-initiated)
+      if (!details.includes('User ended')) {
+        console.log('⚠️ Unexpected disconnection');
+      }
+
+      // Clear speaking timeout on disconnect
+      if (speakingTimeout) {
+        clearTimeout(speakingTimeout);
+        setSpeakingTimeout(null);
+      }
     },
     onError: (message: string, context?: Record<string, unknown>) => {
       console.error('❌ Conversation error:', message, context);
-      Alert.alert('Error', `Voice AI error: ${message}`);
 
-      // Auto-recovery for connection issues
+      // Only show alert for critical errors
+      const isCriticalError = message.includes('authentication') ||
+                             message.includes('permission') ||
+                             message.includes('microphone');
+
+      if (isCriticalError) {
+        Alert.alert('Error', `Voice AI error: ${message}`);
+      } else {
+        console.log('ℹ️ Non-critical error logged (no alert shown)');
+      }
+
+      // Auto-recovery for connection issues (but don't alert)
       if (message.includes('connection') || message.includes('audio')) {
         console.log('🔄 Attempting auto-recovery...');
         setTimeout(() => {
@@ -190,17 +217,24 @@ const ConversationScreen = () => {
 
         // Set timeout to force transition if stuck in speaking mode
         const timeout = setTimeout(() => {
-          console.log('⚠️ Speaking timeout - forcing transition to listening');
+          // Only log if still connected (avoid false warnings after disconnect)
           if (conversation.status === 'connected') {
+            console.log('⚠️ Speaking timeout - forcing transition to listening');
             setIsAISpeaking(false);
             setIsUserSpeaking(true);
           }
-        }, 10000); // 10 second timeout
+        }, 30000); // 30 second timeout (increased for longer responses)
         setSpeakingTimeout(timeout);
       }
     },
     onStatusChange: ({ status }: { status: ConversationStatus }) => {
       console.log(`📡 Status changed to: ${status}`);
+
+      // Clear timeout when disconnecting
+      if (status === 'disconnected' && speakingTimeout) {
+        clearTimeout(speakingTimeout);
+        setSpeakingTimeout(null);
+      }
     },
     onCanSendFeedbackChange: ({
       canSendFeedback,
@@ -212,21 +246,28 @@ const ConversationScreen = () => {
   });
 
   const [isStarting, setIsStarting] = useState(false);
-  const [textInput, setTextInput] = useState('');
   const [isAISpeaking, setIsAISpeaking] = useState(false);
   const [lastActivity, setLastActivity] = useState<number>(Date.now());
   const [isUserSpeaking, setIsUserSpeaking] = useState(false);
   const [speakingTimeout, setSpeakingTimeout] = useState<NodeJS.Timeout | null>(null);
   const [lastUserMessage, setLastUserMessage] = useState<Date | null>(null);
   const [waitingForResponse, setWaitingForResponse] = useState(false);
+  const [showBottomBar, setShowBottomBar] = useState(true);
+  const [textInput, setTextInput] = useState('');
+  const [geminiResponse, setGeminiResponse] = useState<string | null>(null);
+  const [isGeminiLoading, setIsGeminiLoading] = useState(false);
+  // Voice features disabled - needs app rebuild
+  // const [isListening, setIsListening] = useState(false);
+  // const [isSpeaking, setIsSpeaking] = useState(false);
 
-  const handleSubmitText = () => {
-    if (textInput.trim()) {
-      conversation.sendUserMessage(textInput.trim());
-      setTextInput('');
-      Keyboard.dismiss();
-    }
-  };
+  // Cleanup speaking timeout on component unmount
+  useEffect(() => {
+    return () => {
+      if (speakingTimeout) {
+        clearTimeout(speakingTimeout);
+      }
+    };
+  }, [speakingTimeout]);
 
   const startConversation = async () => {
     if (isStarting || !isInitialized || !permissionsGranted) {
@@ -269,6 +310,12 @@ const ConversationScreen = () => {
 
   const endConversation = async () => {
     try {
+      // Clear any pending timeouts
+      if (speakingTimeout) {
+        clearTimeout(speakingTimeout);
+        setSpeakingTimeout(null);
+      }
+
       await conversation.endSession();
     } catch (error) {
       console.error('Failed to end conversation:', error);
@@ -276,218 +323,198 @@ const ConversationScreen = () => {
     }
   };
 
-  const getStatusColor = (status: ConversationStatus): string => {
-    switch (status) {
-      case 'connected':
-        return '#10B981'; // Green
-      case 'connecting':
-        return '#F59E0B'; // Orange
-      case 'disconnected':
-        return '#EF4444'; // Red
-      default:
-        return '#6B7280'; // Gray
+  const handleAskGemini = async () => {
+    if (!textInput.trim()) {
+      Alert.alert('Empty Question', 'Please type a question first');
+      return;
     }
-  };
 
-  const getStatusText = (status: ConversationStatus): string => {
-    return status.charAt(0).toUpperCase() + status.slice(1);
-  };
+    setIsGeminiLoading(true);
+    setGeminiResponse(null);
+    Keyboard.dismiss();
 
-  const canStart = conversation.status === 'disconnected' && !isStarting && isInitialized && permissionsGranted;
-  const canEnd = conversation.status === 'connected';
-  const isUnresponsive = conversation.status === 'connected' && (Date.now() - lastActivity) > 15000; // 15 seconds
-
-  const resetConnection = async () => {
     try {
-      console.log('🔄 Resetting connection due to unresponsive AI...');
-      await conversation.endSession();
-      setTimeout(() => startConversation(), 1000);
+      const response = await askGemini(textInput);
+      setGeminiResponse(response);
+      setTextInput('');
     } catch (error) {
-      console.error('Failed to reset connection:', error);
+      console.error('Error asking Gemini:', error);
+      Alert.alert('Error', 'Failed to get response from Gemini AI');
+    } finally {
+      setIsGeminiLoading(false);
     }
   };
+
+  // Voice features disabled - needs app rebuild to work
+  const handleAskGeminiGreeting = async () => {
+    setIsGeminiLoading(true);
+    setGeminiResponse(null);
+    try {
+      const response = await askGemini('Act as a helpful AI assistant. Greet the user in a friendly way and ask them: "Aapko kya help chahiye?" (What help do you need?). Keep it short and welcoming.');
+      setGeminiResponse(response);
+    } catch (error) {
+      console.error('Error asking Gemini:', error);
+      Alert.alert('Error', 'Failed to get response from Gemini AI');
+    } finally {
+      setIsGeminiLoading(false);
+    }
+  };
+
 
   if (!isInitialized) {
     return (
-      <View style={[styles.container, styles.centeredContainer]}>
-        <Text style={styles.title}>🎙️ Initializing Audio...</Text>
-        <Text style={styles.subtitle}>Setting up voice system</Text>
-      </View>
+      <LinearGradient
+        colors={['#E8E4F3', '#D4E4F7', '#E0F0FF']}
+        style={styles.container}
+      >
+        <View style={styles.centeredContainer}>
+          <Text style={styles.initText}>🎙️ Initializing...</Text>
+        </View>
+      </LinearGradient>
     );
   }
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <StatusBar style="auto" />
+    <LinearGradient
+      colors={['#E8DEF8', '#D4E4F7', '#E0F0FF', '#F5E8F7']}
+      locations={[0, 0.3, 0.7, 1]}
+      style={styles.container}
+    >
+      <StatusBar style="dark" />
 
-        {/* Header */}
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+        onScroll={(event) => {
+          const scrollY = event.nativeEvent.contentOffset.y;
+          if (scrollY > 50) {
+            setShowBottomBar(false);
+          } else {
+            setShowBottomBar(true);
+          }
+        }}
+        scrollEventThrottle={16}
+      >
+        {/* Greeting Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Simple Conversations</Text>
+          <Text style={styles.greeting}>Hello, Friend!</Text>
+          <Text style={styles.subtitle}>How can I help you today?</Text>
         </View>
 
-        {/* Status Card */}
-        <View style={styles.statusCard}>
-          <View style={styles.statusRow}>
-            <View
-              style={[
-                styles.statusDot,
-                { backgroundColor: getStatusColor(conversation.status) },
-              ]}
-            />
-            <Text style={styles.statusText}>
-              {getStatusText(conversation.status)}
-            </Text>
-          </View>
-          <View style={styles.statusRow}>
-            <View
-              style={[
-                styles.statusDot,
-                { backgroundColor: permissionsGranted ? '#10B981' : '#EF4444' },
-              ]}
-            />
-            <Text style={styles.statusText}>
-              {permissionsGranted ? '🎤 Ready' : '🎤 Permission Needed'}
-            </Text>
-          </View>
-        </View>
-
-        {/* Speaking/Listening Indicator */}
-        {conversation.status === 'connected' && (
-          <View style={styles.speakingContainer}>
-            <View
-              style={[
-                styles.speakingDot,
-                {
-                  backgroundColor: isAISpeaking ? '#8B5CF6' : isUserSpeaking ? '#10B981' : '#D1D5DB',
-                },
-              ]}
-            />
-            <Text
-              style={[
-                styles.speakingText,
-                { color: isAISpeaking ? '#8B5CF6' : isUserSpeaking ? '#10B981' : '#9CA3AF' },
-              ]}
-            >
-              {isAISpeaking ? '🗣️ AI Speaking' : isUserSpeaking ? '🎙️ You can speak' : '👂 Ready to listen'}
-            </Text>
+        {/* Gemini Response Display */}
+        {geminiResponse && (
+          <View style={styles.geminiResponseContainer}>
+            <View style={styles.geminiHeader}>
+              <Text style={styles.geminiTitle}>🤖 Gemini AI Response</Text>
+              <TouchableOpacity
+                onPress={() => setGeminiResponse(null)}
+                style={styles.closeButton}
+              >
+                <Text style={styles.closeButtonText}>✕</Text>
+              </TouchableOpacity>
+            </View>
+            <ScrollView style={styles.geminiResponseScroll}>
+              <Text style={styles.geminiResponseText}>{geminiResponse}</Text>
+            </ScrollView>
           </View>
         )}
 
+        {/* Central Avatar with Glowing Ring */}
+        <View style={styles.avatarContainer}>
+          {/* Outer Glow Ring */}
+          <View style={styles.glowRing}>
+            {/* Inner Avatar */}
+            <LinearGradient
+              colors={['#C084FC', '#A78BFA', '#818CF8', '#60A5FA']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.avatarCircle}
+            >
+              <View style={styles.face}>
+                <View style={styles.eyesContainer}>
+                  <View style={styles.eye} />
+                  <View style={styles.eye} />
+                </View>
+              </View>
+            </LinearGradient>
+          </View>
+          <Text style={styles.statusText}>
+            {conversation.status === 'connected'
+              ? (isAISpeaking ? 'Speaking...' : 'Listening...')
+              : ''}
+          </Text>
+        </View>
 
-        {/* Main Action Buttons */}
-        <View style={styles.buttonContainer}>
+        {/* Action Cards Grid */}
+        <View style={styles.cardsGrid}>
           <TouchableOpacity
-            style={[
-              styles.button,
-              styles.startButton,
-              !canStart && styles.disabledButton,
-            ]}
-            onPress={startConversation}
-            disabled={!canStart}
+            style={styles.actionCard}
+            onPress={async () => {
+              if (conversation.status === 'disconnected') {
+                await startConversation();
+                // Wait for connection and then send contextual prompt
+                setTimeout(() => {
+                  conversation.sendContextualUpdate('User wants creative ideas. Ask them what kind of ideas they need.');
+                }, 1500);
+              } else {
+                conversation.sendContextualUpdate('User wants creative ideas. Ask them what kind of ideas they need.');
+              }
+            }}
           >
-            <Text style={styles.buttonText}>
-              {isStarting ? '🔄 Starting...' : '▶️ Start Voice Conversation'}
-            </Text>
+            <Text style={styles.cardIcon}>💡</Text>
+            <Text style={styles.cardText}>Give me ideas</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[
-              styles.button,
-              styles.endButton,
-              !canEnd && styles.disabledButton,
-            ]}
-            onPress={endConversation}
-            disabled={!canEnd}
+            style={styles.actionCard}
+            onPress={async () => {
+              if (conversation.status === 'disconnected') {
+                await startConversation();
+                setTimeout(() => {
+                  conversation.sendContextualUpdate('User wants task management help. Ask them: "What kind of task would you like help with? I can help you create a to-do list, set time-based reminders, track your tasks, or notify you when tasks are completed. What would you prefer?"');
+                }, 1500);
+              } else {
+                conversation.sendContextualUpdate('User wants task management help. Ask them: "What kind of task would you like help with? I can help you create a to-do list, set time-based reminders, track your tasks, or notify you when tasks are completed. What would you prefer?"');
+              }
+            }}
           >
-            <Text style={styles.buttonText}>⏹️ End Conversation</Text>
+            <Text style={styles.cardIcon}>📋</Text>
+            <Text style={styles.cardText}>Do the task</Text>
           </TouchableOpacity>
-
-          {isUnresponsive && (
-            <TouchableOpacity
-              style={[styles.button, styles.resetButton]}
-              onPress={resetConnection}
-            >
-              <Text style={styles.buttonText}>🔄 Reset Connection</Text>
-            </TouchableOpacity>
-          )}
-
         </View>
-
-        {/* Feedback Section */}
-        {conversation.status === 'connected' && conversation.canSendFeedback && (
-          <View style={styles.feedbackContainer}>
-            <Text style={styles.feedbackLabel}>How was that response?</Text>
-            <View style={styles.feedbackButtons}>
-              <TouchableOpacity
-                style={[styles.button, styles.likeButton]}
-                onPress={() => conversation.sendFeedback(true)}
-              >
-                <Text style={styles.buttonText}>👍 Like</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.button, styles.dislikeButton]}
-                onPress={() => conversation.sendFeedback(false)}
-              >
-                <Text style={styles.buttonText}>👎 Dislike</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
-
-        {/* Text Input Section */}
-        {conversation.status === 'connected' && (
-          <View style={styles.messagingContainer}>
-            <Text style={styles.messagingLabel}>💬 Send Text Message</Text>
-            <TextInput
-              style={styles.textInput}
-              value={textInput}
-              onChangeText={(text) => {
-                setTextInput(text);
-                // Prevent agent from interrupting while user is typing
-                if (text.length > 0) {
-                  conversation.sendUserActivity();
-                }
-              }}
-              placeholder="Type your message here... (Press Enter to send)"
-              multiline
-              onSubmitEditing={handleSubmitText}
-              returnKeyType="send"
-              blurOnSubmit={true}
-            />
-            <View style={styles.messageButtons}>
-              <TouchableOpacity
-                style={[styles.button, styles.messageButton]}
-                onPress={handleSubmitText}
-                disabled={!textInput.trim()}
-              >
-                <Text style={styles.buttonText}>💬 Send Message</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.button, styles.contextButton]}
-                onPress={() => {
-                  if (textInput.trim()) {
-                    conversation.sendContextualUpdate(textInput.trim());
-                    setTextInput('');
-                    Keyboard.dismiss();
-                  }
-                }}
-                disabled={!textInput.trim()}
-              >
-                <Text style={styles.buttonText}>📝 Send Context</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
-
-        {/* Instructions */}
-        <Text style={styles.instructions}>
-          💡 Try saying: "Check my battery level", "Flash the screen", or "Change brightness to 50%"
-          {'\n\n'}🎙️ Continuous conversation enabled - just speak naturally, no buttons needed!
-          {'\n\n'}🚀 Running on Custom Development Build with full voice AI integration
-        </Text>
       </ScrollView>
-    </TouchableWithoutFeedback>
+
+      {/* Bottom Input Bar - Hidden on scroll */}
+      {showBottomBar && (
+        <View style={styles.bottomBar}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.textInputFull}
+              placeholder="conversations"
+              placeholderTextColor="#9CA3AF"
+              value={textInput}
+              onChangeText={setTextInput}
+              onSubmitEditing={handleAskGemini}
+              returnKeyType="send"
+            />
+            <TouchableOpacity
+              style={styles.micButton}
+              onPress={conversation.status === 'connected' ? endConversation : startConversation}
+              disabled={isStarting || !permissionsGranted}
+            >
+              <LinearGradient
+                colors={['#60A5FA', '#3B82F6']}
+                style={styles.micGradient}
+              >
+                <Text style={styles.micIcon}>
+                  {conversation.status === 'connected' ? '⏹️' : '🎤'}
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+    </LinearGradient>
   );
 };
 
@@ -501,214 +528,260 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F8FAFC',
-    padding: 20,
-    paddingTop: 60,
+    flex: 1,
   },
   centeredContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  initText: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#6B46C1',
+  },
+
+  // Scroll Content
+  scrollContent: {
+    paddingHorizontal: 20,
+    paddingTop: Platform.OS === 'android' ? 40 : 50,
+    paddingBottom: 100,
+  },
+
+  // Header
   header: {
     alignItems: 'center',
-    marginBottom: 32,
+    marginTop: 10,
+    marginBottom: 30,
   },
-  title: {
+  greeting: {
     fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 32,
-    color: '#1F2937',
-    textAlign: 'center',
-    letterSpacing: -0.5,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#6B7280',
-    textAlign: 'center',
-  },
-  statusCard: {
-    backgroundColor: '#FFFFFF',
-    padding: 20,
-    borderRadius: 16,
-    marginBottom: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
-    width: '100%',
-  },
-  statusRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 8,
-  },
-  statusContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 24,
-    padding: 12,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  statusDot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    marginRight: 8,
-  },
-  statusText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#374151',
-  },
-  speakingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 24,
-    padding: 12,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  speakingDot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    marginRight: 8,
-  },
-  speakingText: {
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  toolsContainer: {
-    backgroundColor: '#E0F2FE',
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 24,
-    width: '100%',
-  },
-  toolsTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#0F172A',
+    fontWeight: '700',
+    color: '#6B46C1',
     marginBottom: 8,
   },
-  toolItem: {
-    fontSize: 14,
-    color: '#475569',
-    fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
-    marginBottom: 4,
+  subtitle: {
+    fontSize: 18,
+    color: '#7C3AED',
+    fontWeight: '500',
   },
-  buttonContainer: {
-    width: '100%',
-    gap: 16,
-    marginBottom: 24,
-  },
-  button: {
-    backgroundColor: '#3B82F6',
-    paddingVertical: 20,
-    paddingHorizontal: 32,
-    borderRadius: 16,
+
+  // Avatar
+  avatarContainer: {
     alignItems: 'center',
+    marginVertical: 40,
+  },
+  glowRing: {
+    width: 250,
+    height: 250,
+    borderRadius: 125,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#FFFFFF',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 30,
+    elevation: 20,
+  },
+  avatarCircle: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#8B5CF6',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.6,
+    shadowRadius: 25,
+    elevation: 18,
+  },
+  face: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  eyesContainer: {
+    flexDirection: 'row',
+    gap: 30,
+    marginTop: 20,
+  },
+  eye: {
+    width: 20,
+    height: 36,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+  },
+  statusText: {
+    marginTop: 20,
+    fontSize: 16,
+    color: '#8B5CF6',
+    fontWeight: '500',
+  },
+
+  // Cards Grid
+  cardsGrid: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 20,
+    marginTop: 30,
+    paddingHorizontal: 10,
+  },
+  actionCard: {
+    flex: 1,
+    maxWidth: 180,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 28,
+    padding: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#8B5CF6',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.15,
+    shadowRadius: 15,
+    elevation: 8,
+    minHeight: 160,
+  },
+  cardIcon: {
+    fontSize: 40,
+    marginBottom: 16,
+  },
+  cardText: {
+    fontSize: 16,
+    color: '#6B46C1',
+    fontWeight: '700',
+    textAlign: 'center',
+    letterSpacing: 0.2,
+  },
+
+  // Bottom Input Bar
+  bottomBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingHorizontal: 24,
+    paddingBottom: Platform.OS === 'android' ? 24 : 34,
+    paddingTop: 12,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 35,
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.18,
+    shadowRadius: 16,
+    elevation: 10,
+  },
+  plusButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: '#E0E7FF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 14,
+  },
+  plusIcon: {
+    fontSize: 28,
+    color: '#7C3AED',
+    fontWeight: '300',
+  },
+  textInput: {
+    flex: 1,
+    fontSize: 17,
+    color: '#9CA3AF',
+    paddingVertical: 0,
+  },
+  textInputFull: {
+    flex: 1,
+    fontSize: 17,
+    color: '#374151',
+    paddingVertical: 0,
+  },
+  voiceButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: '#F3E8FF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+  voiceIcon: {
+    fontSize: 24,
+  },
+  micButton: {
+    marginLeft: 14,
+  },
+  micGradient: {
+    width: 58,
+    height: 58,
+    borderRadius: 29,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#7C3AED',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  micIcon: {
+    fontSize: 26,
+  },
+
+  // Gemini Response
+  geminiResponseContainer: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    padding: 20,
+    marginVertical: 20,
+    marginHorizontal: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 5,
+    shadowRadius: 12,
+    elevation: 8,
+    maxHeight: 300,
   },
-  startButton: {
-    backgroundColor: '#10B981',
+  geminiHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 15,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB',
   },
-  endButton: {
-    backgroundColor: '#EF4444',
-  },
-  resetButton: {
-    backgroundColor: '#F59E0B',
-  },
-  disabledButton: {
-    backgroundColor: '#9CA3AF',
-  },
-  buttonText: {
-    color: 'white',
+  geminiTitle: {
     fontSize: 18,
     fontWeight: '700',
-    letterSpacing: 0.3,
+    color: '#7C3AED',
   },
-  feedbackContainer: {
-    marginBottom: 24,
+  closeButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: '#F3F4F6',
+    justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
   },
-  feedbackLabel: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#374151',
-    marginBottom: 12,
-  },
-  feedbackButtons: {
-    flexDirection: 'row',
-    gap: 16,
-  },
-  likeButton: {
-    backgroundColor: '#10B981',
-    paddingHorizontal: 24,
-  },
-  dislikeButton: {
-    backgroundColor: '#EF4444',
-    paddingHorizontal: 24,
-  },
-  messagingContainer: {
-    marginBottom: 24,
-    width: '100%',
-  },
-  messagingLabel: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#374151',
-    marginBottom: 8,
-  },
-  textInput: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 16,
-    minHeight: 100,
-    textAlignVertical: 'top',
-    borderWidth: 1,
-    borderColor: '#E5E7EB',
-    marginBottom: 16,
-    fontSize: 16,
-  },
-  messageButtons: {
-    flexDirection: 'row',
-    gap: 16,
-  },
-  messageButton: {
-    backgroundColor: '#3B82F6',
-    flex: 1,
-  },
-  contextButton: {
-    backgroundColor: '#4F46E5',
-    flex: 1,
-  },
-  instructions: {
-    fontSize: 14,
+  closeButtonText: {
+    fontSize: 18,
     color: '#6B7280',
-    textAlign: 'center',
-    lineHeight: 20,
-    fontStyle: 'italic',
-    marginTop: 16,
+    fontWeight: '600',
+  },
+  geminiResponseScroll: {
+    maxHeight: 220,
+  },
+  geminiResponseText: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#374151',
   },
 });
