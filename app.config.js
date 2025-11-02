@@ -1,7 +1,8 @@
 export default {
   expo: {
     name: "Pulse of People",
-    slug: "pulse-of-people-mobile",
+    slug: "simple-conversational-ai-rn",
+    owner: "drmurali",
     scheme: "pulseofpeople",
     version: "1.0.0",
     orientation: "portrait",
@@ -12,8 +13,9 @@ export default {
       "**/*"
     ],
     ios: {
-      supportsTablet: true,
-      bundleIdentifier: "com.pulseofpeople.voter",
+      supportsTablet: false,
+      bundleIdentifier: "com.drmurali.pulseofpeople",
+      buildNumber: "1",
       bitcode: false,
       icon: "./assets/icon.png",
       infoPlist: {
@@ -35,7 +37,7 @@ export default {
       }
     },
     android: {
-      package: "com.pulseofpeople.voter",
+      package: "com.drmurali.pulseofpeople",
       versionCode: 1,
       icon: "./assets/icon.png",
       adaptiveIcon: {
