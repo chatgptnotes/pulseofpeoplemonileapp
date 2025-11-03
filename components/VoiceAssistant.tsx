@@ -11,12 +11,12 @@ import {
   Alert,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useConversation } from '@elevenlabs/react-native';
 import { Audio } from 'expo-av';
-import { ElevenLabsConversation, createConversation } from '../services/elevenLabsService';
+import { fetchConversationToken } from '../services/elevenLabsTokenService';
 
 interface VoiceAssistantProps {
   agentId: string;
-  apiKey: string;
 }
 
 interface Message {
@@ -24,18 +24,47 @@ interface Message {
   timestamp: Date;
 }
 
-export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps) {
-  const [isListening, setIsListening] = useState(false);
-  const [isConnecting, setIsConnecting] = useState(false);
+export default function VoiceAssistant({ agentId }: VoiceAssistantProps) {
   const [showModal, setShowModal] = useState(false);
-  const [statusText, setStatusText] = useState('Tap to talk');
   const [messages, setMessages] = useState<Message[]>([]);
   const pulseAnim = useRef(new Animated.Value(1)).current;
-  const conversationRef = useRef<ElevenLabsConversation | null>(null);
 
-  // Pulse animation when listening
+  // Use ElevenLabs hook
+  const conversation = useConversation({
+    onConnect: ({ conversationId }) => {
+      console.log('✅ Connected to ElevenLabs:', conversationId);
+      addMessage('Connected to Meera! Speak in Tamil.');
+    },
+    onDisconnect: (details) => {
+      console.log('❌ Disconnected:', details);
+    },
+    onError: (message) => {
+      console.error('Conversation error:', message);
+      Alert.alert('Error', message);
+    },
+    onMessage: ({ message, source }) => {
+      if (message.type === 'user_transcript') {
+        const text = message.user_transcription_event.user_transcript;
+        console.log('🎤 User said:', text);
+        addMessage(`You: ${text}`);
+      } else if (message.type === 'agent_response') {
+        const text = message.agent_response_event.agent_response;
+        console.log('🤖 Agent said:', text);
+        addMessage(`Meera: ${text}`);
+      }
+    },
+    onStatusChange: ({ status }) => {
+      console.log('Status changed:', status);
+    },
+  });
+
+  const { status, isSpeaking } = conversation;
+  const isConnected = status === 'connected';
+  const isConnecting = status === 'connecting';
+
+  // Pulse animation when connected
   useEffect(() => {
-    if (isListening) {
+    if (isConnected) {
       Animated.loop(
         Animated.sequence([
           Animated.timing(pulseAnim, {
@@ -53,13 +82,13 @@ export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps)
     } else {
       pulseAnim.setValue(1);
     }
-  }, [isListening]);
+  }, [isConnected]);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (conversationRef.current) {
-        conversationRef.current.stop();
+      if (isConnected) {
+        conversation.endSession();
       }
     };
   }, []);
@@ -70,80 +99,68 @@ export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps)
 
   const startConversation = async () => {
     try {
-      setIsConnecting(true);
       setShowModal(true);
-      setStatusText('Connecting to Tamil assistant...');
       setMessages([]);
 
-      // Request microphone permission
-      const permission = await Audio.requestPermissionsAsync();
-      if (!permission.granted) {
-        setStatusText('Microphone permission denied');
-        setIsConnecting(false);
-        Alert.alert(
-          'Permission Required',
-          'Please grant microphone permission to use the Tamil voice assistant.',
-          [{ text: 'OK' }]
-        );
-        return;
-      }
+      console.log('Starting conversation with agent:', agentId);
 
-      // Create conversation with ElevenLabs
-      const conversation = createConversation({
-        agentId,
-        apiKey,
-        onMessage: (message) => {
-          addMessage(message);
-        },
-        onStatusChange: (status) => {
-          setStatusText(status);
-        },
-        onError: (error) => {
-          console.error('Conversation error:', error);
-          Alert.alert('Error', error);
-          setStatusText('Error occurred');
-        },
+      // Configure audio session for voice playback and recording
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: true,
+        playsInSilentModeIOS: true,
+        staysActiveInBackground: false,
+        interruptionModeIOS: 1, // InterruptionModeIOS.DoNotMix
+        shouldDuckAndroid: true,
+        interruptionModeAndroid: 1, // InterruptionModeAndroid.DoNotMix
+        playThroughEarpieceAndroid: false,
       });
 
-      conversationRef.current = conversation;
+      console.log('Audio mode configured for voice conversation');
 
-      // Start the conversation
-      await conversation.start();
+      // Try direct agent ID first (for public agents)
+      try {
+        console.log('Attempting direct agent ID connection...');
+        await conversation.startSession({
+          agentId: agentId,
+        });
+      } catch (directError) {
+        console.log('Direct connection failed, trying signed token...', directError);
 
-      setIsConnecting(false);
-      setIsListening(true);
-      setStatusText('பேசுங்கள் (Speak)...');
+        // If direct connection fails, try with signed token (for private agents)
+        const signedUrl = await fetchConversationToken(agentId);
+        console.log('Got signed URL, starting session...');
 
-      addMessage('Connected to Meera! Speak in Tamil.');
+        await conversation.startSession({
+          conversationToken: signedUrl,
+        });
+      }
 
     } catch (error) {
       console.error('Error starting conversation:', error);
-      setStatusText('Connection failed');
-      setIsConnecting(false);
-      setIsListening(false);
-
       Alert.alert(
         'Connection Error',
         error instanceof Error ? error.message : 'Failed to connect to voice assistant',
         [{ text: 'OK' }]
       );
+      setShowModal(false);
     }
   };
 
   const stopConversation = async () => {
     try {
-      if (conversationRef.current) {
-        await conversationRef.current.stop();
-        conversationRef.current = null;
-      }
-
-      setIsListening(false);
+      await conversation.endSession();
       setShowModal(false);
-      setStatusText('Tap to talk');
       setMessages([]);
     } catch (error) {
       console.error('Error stopping conversation:', error);
     }
+  };
+
+  const getStatusText = () => {
+    if (isConnecting) return 'Connecting to Tamil assistant...';
+    if (isConnected && isSpeaking) return 'Meera is speaking...';
+    if (isConnected) return 'பேசுங்கள் (Speak)...';
+    return status === 'disconnected' ? 'Disconnected' : 'Ready';
   };
 
   return (
@@ -151,12 +168,12 @@ export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps)
       {/* Floating Voice Button */}
       <TouchableOpacity
         style={styles.floatingButton}
-        onPress={() => (isListening ? stopConversation() : startConversation())}
+        onPress={() => (isConnected ? stopConversation() : startConversation())}
         activeOpacity={0.8}
       >
         <Animated.View style={[styles.iconContainer, { transform: [{ scale: pulseAnim }] }]}>
           <MaterialIcons
-            name={isListening ? "stop" : "mic"}
+            name={isConnected ? "stop" : "mic"}
             size={32}
             color="#FFFFFF"
           />
@@ -192,7 +209,7 @@ export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps)
             </View>
 
             {/* Status Text */}
-            <Text style={styles.statusText}>{statusText}</Text>
+            <Text style={styles.statusText}>{getStatusText()}</Text>
 
             {/* Tamil Hint */}
             <Text style={styles.hintText}>
@@ -211,7 +228,7 @@ export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps)
             )}
 
             {/* Info */}
-            {isListening && (
+            {isConnected && (
               <View style={styles.infoBox}>
                 <MaterialIcons name="info-outline" size={16} color="#6B7280" />
                 <Text style={styles.infoText}>
@@ -221,7 +238,7 @@ export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps)
             )}
 
             {/* Action Button */}
-            {isListening && !isConnecting && (
+            {isConnected && !isConnecting && (
               <TouchableOpacity
                 style={styles.stopButton}
                 onPress={stopConversation}

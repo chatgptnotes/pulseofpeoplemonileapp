@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { InteractionManager } from 'react-native';
 import { AuthService, Permission } from '../services/auth';
 import { User, UserRole } from '../services/supabase';
 
@@ -21,28 +22,48 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize auth state
-    checkUser();
+    let subscription: any = null;
+    let timeoutId: NodeJS.Timeout;
 
-    // Listen to auth changes
-    const { data: subscription } = AuthService.onAuthStateChange((user) => {
-      setUser(user);
-      setLoading(false);
+    // Wait for native modules to be ready before initializing auth
+    const task = InteractionManager.runAfterInteractions(async () => {
+      console.log('[AuthContext] Native modules ready, initializing auth...');
+
+      // Set a fallback timeout to ensure loading becomes false
+      timeoutId = setTimeout(() => {
+        console.log('[AuthContext] Timeout reached, setting loading to false');
+        setLoading(false);
+      }, 3000);
+
+      // Initialize auth state
+      await checkUser();
+      clearTimeout(timeoutId);
+
+      // Listen to auth changes
+      const { data: sub } = AuthService.onAuthStateChange((user) => {
+        setUser(user);
+      });
+      subscription = sub;
     });
 
     return () => {
+      task.cancel();
+      if (timeoutId) clearTimeout(timeoutId);
       subscription?.subscription?.unsubscribe();
     };
   }, []);
 
   const checkUser = async () => {
     try {
+      console.log('[AuthContext] Checking current user...');
       const currentUser = await AuthService.getCurrentUser();
+      console.log('[AuthContext] Current user:', currentUser ? 'Found' : 'Not found');
       setUser(currentUser);
     } catch (error) {
-      console.error('Error checking user:', error);
+      console.error('[AuthContext] Error checking user:', error);
       setUser(null);
     } finally {
+      console.log('[AuthContext] Setting loading to false');
       setLoading(false);
     }
   };

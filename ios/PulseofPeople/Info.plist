@@ -28,13 +28,13 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>pulseofpeople</string>
-          <string>com.pulseofpeople.voter</string>
+          <string>com.pulseofpeople.ipadapp</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>exp+pulse-of-people-mobile</string>
+          <string>exp+simple-conversational-ai-rn</string>
         </array>
       </dict>
     </array>

@@ -251,7 +251,6 @@ export default function DashboardScreen({ navigation }: any) {
       {/* Tamil Voice Assistant - Floating Button */}
       <VoiceAssistant
         agentId={Constants.expoConfig?.extra?.EXPO_PUBLIC_AGENT_ID || ''}
-        apiKey={Constants.expoConfig?.extra?.EXPO_PUBLIC_ELEVENLABS_API_KEY || ''}
       />
     </View>
   );

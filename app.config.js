@@ -13,8 +13,8 @@ export default {
       "**/*"
     ],
     ios: {
-      supportsTablet: false,
-      bundleIdentifier: "com.drmurali.pulseofpeople",
+      supportsTablet: true,
+      bundleIdentifier: "com.pulseofpeople.ipadapp",
       buildNumber: "1",
       bitcode: false,
       icon: "./assets/icon.png",
@@ -56,15 +56,17 @@ export default {
         "android.permission.WAKE_LOCK",
         "android.permission.ACCESS_NETWORK_STATE",
         "android.permission.INTERNET"
-      ],
-      queries: {
-        package: ["com.google.android.googlequicksearchbox"]
-      }
+      ]
     },
     extra: {
       eas: {
         projectId: "ad7b470e-f6d8-4ed7-918c-436099f78eaa"
-      }
+      },
+      EXPO_PUBLIC_AGENT_ID: process.env.EXPO_PUBLIC_AGENT_ID,
+      EXPO_PUBLIC_ELEVENLABS_API_KEY: process.env.EXPO_PUBLIC_ELEVENLABS_API_KEY,
+      EXPO_PUBLIC_GEMINI_API_KEY: process.env.EXPO_PUBLIC_GEMINI_API_KEY,
+      EXPO_PUBLIC_SUPABASE_URL: process.env.EXPO_PUBLIC_SUPABASE_URL,
+      EXPO_PUBLIC_SUPABASE_ANON_KEY: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
     },
     plugins: [
       "@livekit/react-native-expo-plugin",

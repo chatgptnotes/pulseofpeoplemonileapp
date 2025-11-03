@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
@@ -8,12 +8,29 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('Supabase URL or Anon Key is missing. Please check your .env file.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    storage: AsyncStorage,
-    autoRefreshToken: true,
-    persistSession: true,
-    detectSessionInUrl: false,
+// Lazy initialization - only create client when first accessed
+let supabaseInstance: SupabaseClient | null = null;
+
+export const getSupabase = (): SupabaseClient => {
+  if (!supabaseInstance) {
+    console.log('[Supabase] Initializing client with AsyncStorage...');
+    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        storage: AsyncStorage as any,
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: false,
+      },
+    });
+  }
+  return supabaseInstance;
+};
+
+// For backward compatibility, export a getter that returns the instance
+export const supabase = new Proxy({} as SupabaseClient, {
+  get: (target, prop) => {
+    const instance = getSupabase();
+    return instance[prop as keyof SupabaseClient];
   },
 });
 
@@ -25,12 +42,15 @@ export type UserRole =
   | 'analyst'
   | 'user'
   | 'viewer'
-  | 'volunteer';
+  | 'volunteer'
+  | 'voter'
+  | 'field_worker';
 
 export interface User {
   id: string;
   email: string;
   name: string;
+  full_name?: string;
   role: UserRole;
   organization_id?: string;
   tenant_id?: string;
@@ -38,6 +58,7 @@ export interface User {
   avatar?: string;
   is_active?: boolean;
   last_login?: string;
+  last_login_at?: string;
   created_at: string;
   updated_at: string;
 }

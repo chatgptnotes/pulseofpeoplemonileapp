@@ -1,4 +1,4 @@
-package com.drmurali.cherripicvoiceagent
+package com.drmurali.pulseofpeople
 
 import android.os.Build
 import android.os.Bundle
