@@ -26,6 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "@config-plugins/react-native-webrtc": "^12.0.0",
+    "@elevenlabs/elevenlabs-js": "^2.21.0",
     "@elevenlabs/react-native": "^0.2.1",
     "@google/generative-ai": "^0.24.1",
     "@livekit/react-native": "^2.9.3",

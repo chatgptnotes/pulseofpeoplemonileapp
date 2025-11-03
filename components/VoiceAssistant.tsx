@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -7,13 +7,21 @@ import {
   Animated,
   Modal,
   ActivityIndicator,
+  ScrollView,
+  Alert,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Audio } from 'expo-av';
+import { ElevenLabsConversation, createConversation } from '../services/elevenLabsService';
 
 interface VoiceAssistantProps {
   agentId: string;
   apiKey: string;
+}
+
+interface Message {
+  text: string;
+  timestamp: Date;
 }
 
 export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps) {
@@ -21,7 +29,9 @@ export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps)
   const [isConnecting, setIsConnecting] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [statusText, setStatusText] = useState('Tap to talk');
-  const pulseAnim = new Animated.Value(1);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const pulseAnim = useRef(new Animated.Value(1)).current;
+  const conversationRef = useRef<ElevenLabsConversation | null>(null);
 
   // Pulse animation when listening
   useEffect(() => {
@@ -45,52 +55,95 @@ export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps)
     }
   }, [isListening]);
 
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (conversationRef.current) {
+        conversationRef.current.stop();
+      }
+    };
+  }, []);
+
+  const addMessage = (text: string) => {
+    setMessages((prev) => [...prev, { text, timestamp: new Date() }]);
+  };
+
   const startConversation = async () => {
     try {
       setIsConnecting(true);
       setShowModal(true);
       setStatusText('Connecting to Tamil assistant...');
+      setMessages([]);
 
       // Request microphone permission
       const permission = await Audio.requestPermissionsAsync();
       if (!permission.granted) {
         setStatusText('Microphone permission denied');
         setIsConnecting(false);
+        Alert.alert(
+          'Permission Required',
+          'Please grant microphone permission to use the Tamil voice assistant.',
+          [{ text: 'OK' }]
+        );
         return;
       }
 
-      // Configure audio session for recording
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: true,
-        playsInSilentModeIOS: true,
-        staysActiveInBackground: true,
-        shouldDuckAndroid: true,
-        playThroughEarpieceAndroid: false,
+      // Create conversation with ElevenLabs
+      const conversation = createConversation({
+        agentId,
+        apiKey,
+        onMessage: (message) => {
+          addMessage(message);
+        },
+        onStatusChange: (status) => {
+          setStatusText(status);
+        },
+        onError: (error) => {
+          console.error('Conversation error:', error);
+          Alert.alert('Error', error);
+          setStatusText('Error occurred');
+        },
       });
 
-      // TODO: Implement ElevenLabs WebSocket connection
-      // For now, we'll show a placeholder
+      conversationRef.current = conversation;
+
+      // Start the conversation
+      await conversation.start();
+
       setIsConnecting(false);
       setIsListening(true);
-      setStatusText('Listening in Tamil... 🎤');
+      setStatusText('பேசுங்கள் (Speak)...');
 
-      // Simulate connection (replace with actual ElevenLabs integration)
-      setTimeout(() => {
-        setStatusText('Ready to talk in Tamil');
-      }, 1000);
+      addMessage('Connected to Meera! Speak in Tamil.');
 
     } catch (error) {
       console.error('Error starting conversation:', error);
       setStatusText('Connection failed');
       setIsConnecting(false);
       setIsListening(false);
+
+      Alert.alert(
+        'Connection Error',
+        error instanceof Error ? error.message : 'Failed to connect to voice assistant',
+        [{ text: 'OK' }]
+      );
     }
   };
 
-  const stopConversation = () => {
-    setIsListening(false);
-    setShowModal(false);
-    setStatusText('Tap to talk');
+  const stopConversation = async () => {
+    try {
+      if (conversationRef.current) {
+        await conversationRef.current.stop();
+        conversationRef.current = null;
+      }
+
+      setIsListening(false);
+      setShowModal(false);
+      setStatusText('Tap to talk');
+      setMessages([]);
+    } catch (error) {
+      console.error('Error stopping conversation:', error);
+    }
   };
 
   return (
@@ -146,14 +199,36 @@ export default function VoiceAssistant({ agentId, apiKey }: VoiceAssistantProps)
               பேசத் தொடங்குங்கள் (Start speaking)
             </Text>
 
+            {/* Conversation Messages */}
+            {messages.length > 0 && (
+              <ScrollView style={styles.messagesContainer}>
+                {messages.map((msg, index) => (
+                  <View key={index} style={styles.messageRow}>
+                    <Text style={styles.messageText}>{msg.text}</Text>
+                  </View>
+                ))}
+              </ScrollView>
+            )}
+
             {/* Info */}
             {isListening && (
               <View style={styles.infoBox}>
                 <MaterialIcons name="info-outline" size={16} color="#6B7280" />
                 <Text style={styles.infoText}>
-                  Speak naturally in Tamil. Meera will respond.
+                  Speak naturally in Tamil. Meera will respond in voice.
                 </Text>
               </View>
+            )}
+
+            {/* Action Button */}
+            {isListening && !isConnecting && (
+              <TouchableOpacity
+                style={styles.stopButton}
+                onPress={stopConversation}
+              >
+                <MaterialIcons name="stop" size={24} color="#FFFFFF" />
+                <Text style={styles.stopButtonText}>Stop Conversation</Text>
+              </TouchableOpacity>
             )}
           </View>
         </View>
@@ -192,6 +267,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     width: '85%',
+    maxHeight: '80%',
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
     padding: 24,
@@ -237,18 +313,49 @@ const styles = StyleSheet.create({
     marginTop: 8,
     textAlign: 'center',
   },
+  messagesContainer: {
+    width: '100%',
+    maxHeight: 200,
+    marginTop: 16,
+    paddingHorizontal: 8,
+  },
+  messageRow: {
+    backgroundColor: '#F3F4F6',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  messageText: {
+    fontSize: 13,
+    color: '#374151',
+  },
   infoBox: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#F3F4F6',
     padding: 12,
     borderRadius: 8,
-    marginTop: 20,
+    marginTop: 16,
     gap: 8,
   },
   infoText: {
     flex: 1,
     fontSize: 12,
     color: '#6B7280',
+  },
+  stopButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#EF4444',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    marginTop: 16,
+    gap: 8,
+  },
+  stopButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
