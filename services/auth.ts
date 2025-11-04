@@ -93,6 +93,16 @@ const rolePermissions: Record<UserRole, Permission[]> = {
     'field_workers.submit_reports',
     'data.view_dashboard',
     'alerts.view'
+  ],
+  voter: [
+    'data.view_dashboard',
+    'alerts.view'
+  ],
+  field_worker: [
+    'field_workers.submit_reports',
+    'field_workers.view_reports',
+    'data.view_dashboard',
+    'alerts.view'
   ]
 };
 

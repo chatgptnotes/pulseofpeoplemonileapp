@@ -39,8 +39,8 @@ export default function AnalyticsScreen({ navigation }: any) {
   }, [timeRange]);
 
   const loadAnalytics = async () => {
+    const days = parseInt(timeRange);
     try {
-      const days = parseInt(timeRange);
       const startDate = new Date();
       startDate.setDate(startDate.getDate() - days);
 
