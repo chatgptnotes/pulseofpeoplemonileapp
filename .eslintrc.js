@@ -19,7 +19,6 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
-    'react-native/react-native': true,
   },
   settings: {
     react: {
