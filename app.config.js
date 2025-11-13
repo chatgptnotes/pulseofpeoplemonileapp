@@ -69,14 +69,6 @@ export default {
       EXPO_PUBLIC_SUPABASE_ANON_KEY: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
     },
     plugins: [
-      "@livekit/react-native-expo-plugin",
-      [
-        "@config-plugins/react-native-webrtc",
-        {
-          cameraPermission: "Allow access to camera for video calls.",
-          microphonePermission: "Allow access to microphone for voice conversations."
-        }
-      ],
       [
         "expo-build-properties",
         {

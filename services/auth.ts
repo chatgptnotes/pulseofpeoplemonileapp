@@ -170,14 +170,66 @@ export class AuthService {
     }
   }
 
-  // Sign out
+  // Sign out with retry logic
   static async signOut() {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-    } catch (error) {
-      console.error('Sign out error:', error);
-      throw error;
+    const maxRetries = 3;
+    let lastError: any = null;
+    let successfulSignOut = false;
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        // Only log on first attempt to reduce noise
+        if (attempt === 1) {
+          console.log('[AuthService] Signing out...');
+        }
+
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+          lastError = error;
+
+          // If network error, wait before retry (but don't log each attempt)
+          if (error.message?.includes('Network') || error.message?.includes('fetch')) {
+            if (attempt < maxRetries) {
+              await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+              continue;
+            }
+          } else {
+            // For non-network errors, throw immediately
+            throw error;
+          }
+        } else {
+          console.log('[AuthService] Sign out successful');
+          successfulSignOut = true;
+          return;
+        }
+      } catch (error: any) {
+        lastError = error;
+
+        // If network error and not last attempt, retry silently
+        if ((error.message?.includes('Network') || error.message?.includes('fetch')) && attempt < maxRetries) {
+          await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+          continue;
+        }
+
+        // If last attempt, break
+        if (attempt === maxRetries) {
+          break;
+        }
+      }
+    }
+
+    // If all retries failed but it's a network error, silently succeed
+    // The local session will be cleared by the auth context
+    if (lastError?.message?.includes('Network') || lastError?.message?.includes('fetch')) {
+      console.log('[AuthService] Logout completed (local session cleared)');
+      return;
+    }
+
+    // Only throw if it's not a network error
+    if (lastError && !successfulSignOut) {
+      console.error('[AuthService] Sign out failed:', lastError.message);
+      throw lastError;
     }
   }
 

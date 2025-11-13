@@ -9,25 +9,17 @@ import { useAuth } from '../contexts/AuthContext';
 // Screens
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
-import DashboardScreen from '../screens/DashboardScreen';
-import FieldReportsScreen from '../screens/FieldReportsScreen';
-import SocialMediaScreen from '../screens/SocialMediaScreen';
-import AlertsScreen from '../screens/AlertsScreen';
+import BoothDashboardScreen from '../screens/BoothDashboardScreen';
+import AudioCollectionScreen from '../screens/AudioCollectionScreen';
+import PollsScreen from '../screens/PollsScreen';
+import FormsScreen from '../screens/FormsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import SubmitReportScreen from '../screens/SubmitReportScreen';
-import SurveysScreen from '../screens/SurveysScreen';
-import VoterDatabaseScreen from '../screens/VoterDatabaseScreen';
-import AnalyticsScreen from '../screens/AnalyticsScreen';
-import CompetitorAnalysisScreen from '../screens/CompetitorAnalysisScreen';
-import AIInsightsScreen from '../screens/AIInsightsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 // Tab Navigator for main app screens
 function MainTabs() {
-  const { user, hasPermission, isRole } = useAuth();
-
   return (
     <Tab.Navigator
       screenOptions={{
@@ -43,46 +35,12 @@ function MainTabs() {
     >
       <Tab.Screen
         name="Dashboard"
-        component={DashboardScreen}
+        component={BoothDashboardScreen}
         options={{
-          tabBarLabel: 'Dashboard',
-          tabBarIcon: ({ color }) => <TabIcon name="dashboard" color={color} />,
+          tabBarLabel: 'Booth',
+          tabBarIcon: ({ color }) => <TabIcon name="home" color={color} />,
         }}
       />
-
-      {hasPermission('field_workers.submit_reports') && (
-        <Tab.Screen
-          name="Submit"
-          component={SubmitReportScreen}
-          options={{
-            tabBarLabel: 'Report',
-            tabBarIcon: ({ color }) => <TabIcon name="add-circle" color={color} />,
-          }}
-        />
-      )}
-
-      {hasPermission('alerts.view') && (
-        <Tab.Screen
-          name="Alerts"
-          component={AlertsScreen}
-          options={{
-            tabBarLabel: 'Alerts',
-            tabBarIcon: ({ color }) => <TabIcon name="notifications" color={color} />,
-            tabBarBadge: 3, // TODO: Get actual unread count
-          }}
-        />
-      )}
-
-      {hasPermission('data.view_analytics') && (
-        <Tab.Screen
-          name="Analytics"
-          component={AnalyticsScreen}
-          options={{
-            tabBarLabel: 'Analytics',
-            tabBarIcon: ({ color}) => <TabIcon name="bar-chart" color={color} />,
-          }}
-        />
-      )}
 
       <Tab.Screen
         name="Profile"
@@ -99,10 +57,7 @@ function MainTabs() {
 // Material Icon component for tab bar icons
 function TabIcon({ name, color }: { name: string; color: string }) {
   const iconMap: Record<string, keyof typeof MaterialIcons.glyphMap> = {
-    dashboard: 'dashboard',
-    'add-circle': 'add-circle',
-    notifications: 'notifications',
-    'bar-chart': 'bar-chart',
+    home: 'home',
     person: 'person',
   };
 
@@ -140,12 +95,9 @@ export default function AppNavigator() {
         ) : (
           <>
             <Stack.Screen name="Main" component={MainTabs} />
-            <Stack.Screen name="FieldReports" component={FieldReportsScreen} />
-            <Stack.Screen name="SocialMedia" component={SocialMediaScreen} />
-            <Stack.Screen name="Surveys" component={SurveysScreen} />
-            <Stack.Screen name="VoterDatabase" component={VoterDatabaseScreen} />
-            <Stack.Screen name="CompetitorAnalysis" component={CompetitorAnalysisScreen} />
-            <Stack.Screen name="AIInsights" component={AIInsightsScreen} />
+            <Stack.Screen name="AudioCollection" component={AudioCollectionScreen} />
+            <Stack.Screen name="Polls" component={PollsScreen} />
+            <Stack.Screen name="Forms" component={FormsScreen} />
           </>
         )}
       </Stack.Navigator>

@@ -13,7 +13,6 @@ import { StatusBar } from 'expo-status-bar';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase, SentimentData, Alert as AlertType } from '../services/supabase';
-import VoiceAssistant from '../components/VoiceAssistant';
 import Constants from 'expo-constants';
 
 const { width } = Dimensions.get('window');
@@ -247,11 +246,6 @@ export default function DashboardScreen({ navigation }: any) {
           <Text style={styles.versionText}>v1.0.0 - {new Date().toLocaleDateString()}</Text>
         </View>
       </ScrollView>
-
-      {/* Tamil Voice Assistant - Floating Button */}
-      <VoiceAssistant
-        agentId={Constants.expoConfig?.extra?.EXPO_PUBLIC_AGENT_ID || ''}
-      />
     </View>
   );
 }
